@@ -78,6 +78,7 @@ print(model.layers[3].weights[0].numpy().shape)
 ## Retrieve network weights after training. Skip layer 0 (input layer)
 for w in range(1, len(model.layers)):
 	weight_filename = "layer_" + str(w) + "_weights.txt" 
+	open(weight_filename, 'w').close() # clear file
 	file = open(weight_filename,"a") 
 	file.write('{')
 	for i in range(model.layers[w].weights[0].numpy().shape[0]):

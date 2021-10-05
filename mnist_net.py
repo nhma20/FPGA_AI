@@ -1,0 +1,99 @@
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+import os
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Flatten
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Activation
+from sklearn.utils import shuffle
+
+## Use CPU only
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
+## Load MNIST dataset
+train_images = []
+train_labels = []
+test_images = []
+test_labels = []
+
+dims = (10,10) # dimensions of images to train/test with
+
+for j in range(2): # train and test	
+	for i in range(10): # 0 to 9
+		if j == 0:
+			read_folder = os.path.expanduser("~") + '/Downloads/MNIST_Dataset_JPG/MNIST_JPG_training/' + str(i) + '/'
+		if j == 1:
+			read_folder = os.path.expanduser("~") + '/Downloads/MNIST_Dataset_JPG/MNIST_JPG_testing/' + str(i) + '/'
+		for filename in os.listdir(read_folder):
+			img = cv2.imread(os.path.join(read_folder,filename),0) # read img as grayscale
+			img = cv2.resize(img, dims, interpolation = cv2.INTER_AREA)	# resize img to fit dims
+			if img is not None:
+				if j == 0:
+					train_images.append(img / 255) # normalize pixel vals to be between 0 - 1
+					train_labels.append(i)
+				if j == 1:
+					test_images.append(img / 255)
+					test_labels.append(i)
+
+## Convert to numpy arrays, flatten images - change dimensions from Nx15x15 to Nx225
+train_images = np.asarray(train_images).astype('float32')
+test_images = np.asarray(test_images).astype('float32')
+train_labels = np.asarray(train_labels).astype('uint8')
+test_labels = np.asarray(test_labels).astype('uint8')
+
+## Shuffle dataset
+train_images, train_labels = shuffle(train_images, train_labels)
+test_images, test_labels = shuffle(test_images, test_labels)
+
+print(train_images.shape)
+print(train_labels.shape)
+print(type(train_images[0][0][0]))
+print(type(train_labels[0]))
+
+## Define network structure
+model = Sequential([
+	Flatten(input_shape=dims),		# reshape 15x15 to 225, layer 0
+	Dense(32, activation='sigmoid', use_bias=False),	# dense layer 1
+	Dense(16, activation='sigmoid', use_bias=False),	# dense layer 2
+	Dense(10, activation='softmax', use_bias=False),	# dense layer 3
+])
+
+model.compile(optimizer='adam',
+			  loss='sparse_categorical_crossentropy',
+			  metrics=['accuracy'])
+
+## Train network  
+model.fit(train_images, train_labels, epochs=100, batch_size=2000, validation_split = 0.1)
+
+results = model.evaluate(test_images, test_labels, verbose=0)
+
+print("test loss, test acc: ", results)
+
+print(model.layers[1].weights[0].numpy().shape)
+print(model.layers[2].weights[0].numpy().shape)
+print(model.layers[3].weights[0].numpy().shape)
+
+## Retrieve network weights after training. Skip layer 0 (input layer)
+for w in range(1, len(model.layers)):
+	weight_filename = "layer_" + str(w) + "_weights.txt" 
+	file = open(weight_filename,"a") 
+	file.write('{')
+	for i in range(model.layers[w].weights[0].numpy().shape[0]):
+		file.write('{')
+		for j in range(model.layers[w].weights[0].numpy().shape[1]):
+			file.write(str(model.layers[w].weights[0].numpy()[i][j]))
+			if j != model.layers[w].weights[0].numpy().shape[1]-1:
+				file.write(', ')
+		file.write('}')
+		if i != model.layers[w].weights[0].numpy().shape[0]-1:
+			file.write(', \n')
+	file.write('}')
+	file.close()
+
+network_weights = model.layers[1].weights
+layer_1_W = network_weights[0].numpy()
+print(layer_1_W)
+
+print("Done")

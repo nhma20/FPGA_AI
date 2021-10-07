@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import os
+import time
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Flatten
@@ -13,6 +14,7 @@ from sklearn.utils import shuffle
 os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 ## Load MNIST dataset
+print("Loading dataset")
 train_images = []
 train_labels = []
 test_images = []
@@ -47,16 +49,16 @@ test_labels = np.asarray(test_labels).astype('uint8')
 train_images, train_labels = shuffle(train_images, train_labels)
 test_images, test_labels = shuffle(test_images, test_labels)
 
-print(train_images.shape)
-print(train_labels.shape)
-print(type(train_images[0][0][0]))
-print(type(train_labels[0]))
+#print(train_images.shape)
+#print(train_labels.shape)
+#print(type(train_images[0][0][0]))
+#print(type(train_labels[0]))
 
 ## Define network structure
 model = Sequential([
 	Flatten(input_shape=dims),		# reshape 15x15 to 225, layer 0
-	Dense(32, activation='sigmoid', use_bias=False),	# dense layer 1
-	Dense(16, activation='sigmoid', use_bias=False),	# dense layer 2
+	Dense(32, activation='relu', use_bias=False),	# dense layer 1
+	Dense(16, activation='relu', use_bias=False),	# dense layer 2
 	Dense(10, activation='softmax', use_bias=False),	# dense layer 3
 ])
 
@@ -64,16 +66,23 @@ model.compile(optimizer='adam',
 			  loss='sparse_categorical_crossentropy',
 			  metrics=['accuracy'])
 
-## Train network  
-model.fit(train_images, train_labels, epochs=100, batch_size=2000, validation_split = 0.1)
 
+## Train network  
+model.fit(train_images, train_labels, epochs=50, batch_size=2000, validation_split = 0.1)
+
+model.summary()
+
+start_t = time.time()
 results = model.evaluate(test_images, test_labels, verbose=0)
+totalt_t = time.time() - start_t
+print("Inference time for ", len(test_images), " test image: " , totalt_t, " seconds")
+
 
 print("test loss, test acc: ", results)
 
-print(model.layers[1].weights[0].numpy().shape)
-print(model.layers[2].weights[0].numpy().shape)
-print(model.layers[3].weights[0].numpy().shape)
+#print(model.layers[1].weights[0].numpy().shape)
+#print(model.layers[2].weights[0].numpy().shape)
+#print(model.layers[3].weights[0].numpy().shape)
 
 ## Retrieve network weights after training. Skip layer 0 (input layer)
 for w in range(1, len(model.layers)):
@@ -94,7 +103,36 @@ for w in range(1, len(model.layers)):
 	file.close()
 
 network_weights = model.layers[1].weights
+#print(network_weights)
 layer_1_W = network_weights[0].numpy()
-print(layer_1_W)
+#print(layer_1_W)
 
-print("Done")
+
+
+
+
+
+
+img_filename = "img_pixel_vals.txt" 
+open(img_filename, 'w').close() # clear file
+file = open(img_filename,"a") 
+file.write('{')
+for i in range(dims[1]):
+	for j in range(dims[0]):
+		file.write(str(test_images[0][i][j]))
+		if j != dims[1]-1:
+			file.write(', ')
+	if i != dims[0]-1:
+		file.write(', \n')
+file.write('}')
+file.close()
+
+print("test_image[0] label: ", test_labels[0])
+
+x = test_images[0]
+x = np.expand_dims(x, axis=0)
+print("NN Prediction: ", np.argmax(model.predict(x)))
+
+
+
+print("Finished")

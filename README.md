@@ -12,3 +12,8 @@ Board files installed by creating new project, and pressing refresh (lower left 
 ## Stuff
 Stuff
 1. Stuff
+
+
+- Let Vivado find custom IPs
+   - Tools -> IP -> Repository
+   - Add folder with new IP (likely HLS project folder)

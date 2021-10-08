@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import time
 import tensorflow as tf
+import struct
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import Dense
@@ -111,8 +112,6 @@ layer_1_W = network_weights[0].numpy()
 
 
 
-
-
 img_filename = "img_pixel_vals.txt" 
 open(img_filename, 'w').close() # clear file
 file = open(img_filename,"a") 
@@ -125,6 +124,40 @@ for i in range(dims[1]):
 	if i != dims[0]-1:
 		file.write(', \n')
 file.write('}')
+file.close()
+
+
+img_filename = "img_pixel_vals_vhdl_array.txt" 
+open(img_filename, 'w').close() # clear file
+file = open(img_filename,"a") 
+file.write('(')
+for i in range(dims[1]):
+	for j in range(dims[0]):
+		file.write('"')
+		wstr = ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', test_images[0][i][j]))
+		file.write(wstr)
+		file.write('"')
+		if j != dims[1]-1:
+			file.write(', ')
+	if i != dims[0]-1:
+		file.write(', \n')
+file.write(')')
+file.close()
+
+
+img_filename = "img_pixel_vals.coe" 
+open(img_filename, 'w').close() # clear file
+file = open(img_filename,"a") 
+file.write('memory_initialization_radix=2;\n') # radix 2 = binary, radix 10 = decimal
+file.write('memory_initialization_vector=\n')
+for i in range(dims[1]):
+	for j in range(dims[0]):
+		wstr = ''.join('{:0>8b}'.format(c) for c in struct.pack('!f', test_images[0][i][j]))
+		file.write(wstr)
+		if i == dims[0]-1 and j == dims[1]-1:
+			file.write(';')
+		else:
+			file.write(',\n')
 file.close()
 
 print("test_image[0] label: ", test_labels[0])

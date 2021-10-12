@@ -17,3 +17,9 @@ Stuff
 - Let Vivado find custom IPs
    - Tools -> IP -> Repository
    - Add folder with new IP (likely HLS project folder)
+
+
+## TODO
+0. :yellow_circle: Make sure image pixel values are loaded into NN IP
+1. :yellow_circle: Make sure reset is correct
+2. :yellow_circle: Set up PS side or UART for easier debugging

@@ -9,6 +9,7 @@ Board files installed by creating new project, and pressing refresh (lower left 
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 
+## HLS ap_ctrl_hs interface
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/interface.png?raw=true)
 
 

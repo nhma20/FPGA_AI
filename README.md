@@ -27,3 +27,4 @@ Stuff
 0. :yellow_circle: Make sure image pixel values are loaded into NN IP
 1. :yellow_circle: Make sure reset is correct
 2. :yellow_circle: Set up PS side or UART for easier debugging
+3. :yellow_circle: Make work with block memory instead of array input

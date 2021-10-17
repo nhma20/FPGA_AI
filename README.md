@@ -9,7 +9,7 @@ Board files installed by creating new project, and pressing refresh (lower left 
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 
-![Alt text](https://github.com/nhma20/FPGA_AI/pictures/interface.png?raw=true)
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/interface.png?raw=true)
 
 
 ## Stuff

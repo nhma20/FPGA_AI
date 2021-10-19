@@ -15,16 +15,16 @@ Board files installed by creating new project, and pressing refresh (lower left 
 
 ## Stuff
 Stuff
-1. Stuff
-
-
-- Let Vivado find custom IPs
+1. Let Vivado find custom IPs
    - Tools -> IP -> Repository
    - Add folder with new IP (likely HLS project folder)
+2. nn_inference works in Vivado simulation and hardware
+   - Might have to simulate first
+   - Then generate bitstream and deploy on FPGA
 
 
 ## TODO
-0. :yellow_circle: Make sure image pixel values are loaded into NN IP
-1. :yellow_circle: Make sure reset is correct
+0. :green_circle: Make sure image pixel values are loaded into NN IP
+1. :green_circle: Make sure reset is correct
 2. :yellow_circle: Set up PS side or UART for easier debugging
-3. :yellow_circle: Make work with block memory instead of array input
+3. :green_circle: Make work with block memory instead of array input

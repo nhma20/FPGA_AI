@@ -52,6 +52,7 @@ Board files installed by creating new project, and pressing refresh (lower left 
 1. Let Vivado find custom IPs
    - Tools -> IP -> Repository
    - Add folder with new IP (likely HLS project folder)
+   - Can now add nn_inference from 'Add IP' (Ctrl+i)
 2. nn_inference works in Vivado simulation and hardware
    - Might have to simulate first
    - Then generate bitstream and deploy on FPGA

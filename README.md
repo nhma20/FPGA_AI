@@ -18,6 +18,14 @@ Board files installed by creating new project, and pressing refresh (lower left 
 - Xilinx HLS User Guide (v2021.1)
    - https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1399-vitis-hls.pdf
 
+## Speed up HLS implementation
+- Unroll loops with: #pragma HLS UNROLL. Append factor=X if HLS should not unroll fully but with factor X.
+   - Reduces latency ~10x
+   - May introduce negative slack which would require longer clock periods (lower clock frequency). Can use clocking wizard to hit desired target.
+- Perhaps possible to save cycles by using parallel IO instead of sequential memory reads.
+   - Fully parallel IO with: #pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
+   - Default is simple memory interace if no pragma specified
+
 ## Stuff
 Stuff
 1. Let Vivado find custom IPs

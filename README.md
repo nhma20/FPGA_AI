@@ -12,6 +12,11 @@ Board files installed by creating new project, and pressing refresh (lower left 
 ## HLS ap_ctrl_hs interface
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/interface.png?raw=true)
 
+## HLS Material
+- Excellent HLS walkthrough (with occasional bad audio):
+   - https://www.youtube.com/watch?v=i_nQmjEaMVs
+- Xilinx HLS User Guide (v2021.1)
+   - https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1399-vitis-hls.pdf
 
 ## Stuff
 Stuff

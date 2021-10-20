@@ -14,6 +14,7 @@ Tested with:
 
 ## mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
+- Edit to customize network for performance and/or accuracy (dims, model, epochs etc)
 - Run with: `python3 mnist_net.py`
 
 

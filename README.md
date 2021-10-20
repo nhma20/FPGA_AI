@@ -29,11 +29,11 @@ Board files installed by creating new project, and pressing refresh (lower left 
 
 
 ## Speed up HLS implementation
-- Unroll loops with: #pragma HLS UNROLL. Append factor=X if HLS should not unroll fully but with factor X.
+- Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.
    - Reduces latency ~10x
    - May introduce negative slack which would require longer clock periods (lower clock frequency). Can use clocking wizard to hit desired target.
 - Perhaps possible to save cycles by using parallel IO instead of sequential memory reads.
-   - Fully parallel IO with: #pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
+   - Fully parallel IO with: `#pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img`
    - Default is simple memory interace if no pragma specified
 
 

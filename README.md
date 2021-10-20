@@ -3,6 +3,7 @@ Introduction to AI on FPGAs
 
 ### Prerequisites
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
+
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
 - `Vivado / Vitis 2021.1` (with cable drivers and board files installed)

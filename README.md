@@ -14,7 +14,7 @@ Board files installed by creating new project, and pressing refresh (lower left 
 
 ## mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
-- Execute with: `python3 mnist_net.py`
+- Run with: `python3 mnist_net.py`
 
 
 ## Create HLS project
@@ -49,7 +49,6 @@ Board files installed by creating new project, and pressing refresh (lower left 
 
 
 ## Stuff
-Stuff
 1. Let Vivado find custom IPs
    - Tools -> IP -> Repository
    - Add folder with new IP (likely HLS project folder)
@@ -59,7 +58,4 @@ Stuff
 
 
 ## TODO
-0. :green_circle: Make sure image pixel values are loaded into NN IP
-1. :green_circle: Make sure reset is correct
-2. :yellow_circle: Set up PS side or UART for easier debugging
-3. :green_circle: Make work with block memory instead of array input
+:yellow_circle: Set up UART to send images to PL for inference

@@ -6,7 +6,15 @@ Tested with:
 - Ubuntu 20.04.2 LTS (host PC)
 - Vivado / Vitis 2021.1 (with cable drivers and board files installed)
 Board files installed by creating new project, and pressing refresh (lower left corner) when looking for boards. Ultra96V2 should appear now. Can close Vivado before finishing creation of new project. 
+- Tensorflow 2.6.0
+- OpenCV 4.2.0
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
+
+
+## mnist_net.py
+- Loads dataset, defines, trains and tests simple network, extracts weights.
+- Execute with: `python3 mnist_net.py`
+
 
 ## Create HLS project
 1. Open HLS -> Create Project -> Name and Location -> Next

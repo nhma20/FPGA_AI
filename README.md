@@ -56,11 +56,13 @@ Tested with:
 2. nn_inference works in Vivado simulation and hardware
    - Might have to simulate first
    - Then generate bitstream and deploy on FPGA
-3. Pynq-Z2 ressources:
+
+
+## Pynq-Z2 ressources:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/xc7z020.png?raw=true)
 
-4. Vivado example block design:
+## Vivado example block design:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_vivado.png?raw=true)
 

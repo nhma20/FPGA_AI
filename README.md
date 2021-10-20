@@ -8,6 +8,26 @@ Tested with:
 Board files installed by creating new project, and pressing refresh (lower left corner) when looking for boards. Ultra96V2 should appear now. Can close Vivado before finishing creation of new project. 
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
+## Create HLS project
+1. Open HLS -> Create Project -> Name and Location -> Next
+2. Design files: Add files -> matmul.cpp and matmul.hpp -> Top function -> nn_inference -> Next
+3. TestBench files: Add files -> matmul_tb.cpp -> Next
+4. Select Configuration: Part -> Boards -> pynq-z2 -> Finish
+5. (edit files)
+6. Run C Simulation to verify design with testbench file
+7. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
+8. (Run Cosimulation)
+9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
+
+
+## Speed up HLS implementation
+- Unroll loops with: #pragma HLS UNROLL. Append factor=X if HLS should not unroll fully but with factor X.
+   - Reduces latency ~10x
+   - May introduce negative slack which would require longer clock periods (lower clock frequency). Can use clocking wizard to hit desired target.
+- Perhaps possible to save cycles by using parallel IO instead of sequential memory reads.
+   - Fully parallel IO with: #pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
+   - Default is simple memory interace if no pragma specified
+
 
 ## HLS ap_ctrl_hs interface
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/interface.png?raw=true)
@@ -18,13 +38,6 @@ Board files installed by creating new project, and pressing refresh (lower left 
 - Xilinx HLS User Guide (v2021.1)
    - https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1399-vitis-hls.pdf
 
-## Speed up HLS implementation
-- Unroll loops with: #pragma HLS UNROLL. Append factor=X if HLS should not unroll fully but with factor X.
-   - Reduces latency ~10x
-   - May introduce negative slack which would require longer clock periods (lower clock frequency). Can use clocking wizard to hit desired target.
-- Perhaps possible to save cycles by using parallel IO instead of sequential memory reads.
-   - Fully parallel IO with: #pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
-   - Default is simple memory interace if no pragma specified
 
 ## Stuff
 Stuff

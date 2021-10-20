@@ -10,6 +10,7 @@ Tested with:
 Board files installed by creating new project, and pressing refresh (lower left corner) when looking for boards. Ultra96V2 should appear now. Can close Vivado before finishing creation of new project. 
 - `Tensorflow 2.6.0`
 - `OpenCV 4.2.0`
+- Python 3.8.10
 
 ## mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.

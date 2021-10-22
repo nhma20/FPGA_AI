@@ -83,32 +83,32 @@ begin
 
     pred <= to_integer(signed(nn_res_in));
 
---    with pred select led_ctrl <=
---        "0001" when 1,
---        "0010" when 2,
---        "0011" when 3,
---        "0100" when 4,
---        "0101" when 5,
---        "0110" when 6,
---        "0111" when 7,
---        "1000" when 8,
---        "1001" when 9,
---        "1010" when 0,
---        "1110" when -1,
---        "1111" when 15,
---        "0000" when others;
+    with pred select led_ctrl <=
+        "0001" when 1,
+        "0010" when 2,
+        "0011" when 3,
+        "0100" when 4,
+        "0101" when 5,
+        "0110" when 6,
+        "0111" when 7,
+        "1000" when 8,
+        "1001" when 9,
+        "1010" when 0,
+        "1110" when -1,
+        "1111" when 15,
+        "0000" when others;
         
-    led_ctrl <= "0001" when (pred = 1 and ap_done = '1') else
-                "0010" when (pred = 2 and ap_done = '1') else
-                "0011" when (pred = 3 and ap_done = '1') else
-                "0100" when (pred = 4 and ap_done = '1') else
-                "0101" when (pred = 5 and ap_done = '1') else
-                "0110" when (pred = 6 and ap_done = '1') else
-                "0111" when (pred = 7 and ap_done = '1') else
-                "1000" when (pred = 8 and ap_done = '1') else
-                "1001" when (pred = 9 and ap_done = '1') else
-                "0000" when (pred = 0 and ap_done = '1') else
-                led_ctrl;
+--    led_ctrl <= "0001" when (pred = 1 and ap_done = '1') else
+--                "0010" when (pred = 2 and ap_done = '1') else
+--                "0011" when (pred = 3 and ap_done = '1') else
+--                "0100" when (pred = 4 and ap_done = '1') else
+--                "0101" when (pred = 5 and ap_done = '1') else
+--                "0110" when (pred = 6 and ap_done = '1') else
+--                "0111" when (pred = 7 and ap_done = '1') else
+--                "1000" when (pred = 8 and ap_done = '1') else
+--                "1001" when (pred = 9 and ap_done = '1') else
+--                "0000" when (pred = 0 and ap_done = '1') else
+--                led_ctrl;
 
    -- led_ctrl <= nn_res_in(27 downto 24);
 

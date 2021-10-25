@@ -6,12 +6,12 @@
 #include "xbram.h"
 #include "xparameters.h"
 #include <unistd.h>
+#include <math.h>
 
-//#define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
-#define BRAM_FP(A)  ((volatile float*)px_config->MemBaseAddress)[A]
-#define NUM_INPUTS		100
-#define BYTES_PR_INPUT	4
-#define BASE_ADDR		XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR	 // from xparameters.h, probably 0x40000000U
+#define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
+#define NUM_INPUTS		100 // number of pixel in input image
+#define BYTES_PR_INPUT	4 	// 32 bit float = 4 bytes
+#define BASE_ADDR		XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR	 // from xparameters.h
 
 XBram             	x_bram;
 XBram_Config    	*px_config;
@@ -20,12 +20,14 @@ XUartPs 			Uart_PS_0;
 
 uint8_t 		ucAXIInit();
 int				xuartps_init();
+void 			printBits(unsigned int num);
+float 			IntBitsToFloat(long long int bits);
 
 int main()
 {
     init_platform();
 
-    print("\n\rStart..\n\r");
+    print("\n\rInitializing..\n\r");
 
     sleep(1);
 
@@ -33,41 +35,56 @@ int main()
 
 	xuartps_init();
 
-	u8 BufferPtr_rx[NUM_INPUTS];
+	uint8_t BufferPtr_rx[NUM_INPUTS*BYTES_PR_INPUT] = {0x00};
 
 	int Status = 0;
-	float bram0;
+	int oldStatus = -1;
+	uint32_t tempInt;
+	float tempFloat = 0.0;
+
+	print("\n\rReady for weights transfer\n\r");
 
     while(1)
     {
     	/**********************************************************************************************************/
 
 		Status = 0;
+
 		while (Status < NUM_INPUTS*BYTES_PR_INPUT) {
-			print("Status: ");
-			xil_printf("%u", Status);
-			print("\n\r");
-			Status +=	XUartPs_Recv(&Uart_PS_0, BufferPtr_rx, (NUM_INPUTS*BYTES_PR_INPUT - Status)); // read UART
+			BufferPtr_rx[Status] = XUartPs_RecvByte(XPAR_XUARTPS_0_BASEADDR); // read UART
+			Status ++;
+			if(oldStatus != Status){ // print received value after read
+				print("Index ");
+				xil_printf("%u", Status-1);
+				xil_printf(" received: %u", BufferPtr_rx[Status-1]);
+				print("\n\r");
+				oldStatus = Status;
+			}
 		}
 
-		bram0 = Xil_In32(BASE_ADDR);
-		print("BRAM(0): ");
-		xil_printf("f", bram0);
-		print("\n\r");
 
 		for(int i = 0; i < NUM_INPUTS; i++){
-			BRAM_FP(i) = BufferPtr_rx[i]; // write to BRAM
+			// concatenate 8-but input messages into 32-bit values
+			tempInt = ((BufferPtr_rx[i*4+3]<<24) | (BufferPtr_rx[i*4+2]<<16) | (BufferPtr_rx[i*4+1]<<8) | BufferPtr_rx[i*4]);
+			// prints current calues in BRAM
+			char buffer2[10];
+			sprintf(buffer2, "%u", tempInt);
+			xil_printf("BRAM[%d]:", i);
+			xil_printf(buffer2);
+			print("\n\r");
+
+			BRAM(i) = tempInt; // write to BRAM
 		}
 
-		bram0 = Xil_In32(BASE_ADDR);
-		print("BRAM(0): ");
-		xil_printf("f", bram0);
-		print("\n\r");
-
+		tempFloat = *((float *)&tempInt); 	// int bits to float
+		// float sanity check
+		xil_printf("tempInt: %d\n\r", tempInt);
+		char buffer1[100];
+		sprintf(buffer1, "tempFloat: %f\n\r", tempFloat);
+		xil_printf(buffer1);
     }
 
-    print("Hello World\n\r");
-    print("Successfully ran Hello World application");
+    print("Shutting down");
     cleanup_platform();
     return 0;
 }

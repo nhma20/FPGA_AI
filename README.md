@@ -57,11 +57,11 @@ Tested with:
 2. nn_inference works in Vivado simulation and hardware
    - Might have to simulate first
    - Then generate bitstream and deploy on FPGA
-3. Vitis link to math.h library for ´#include "math.h"´
+3. Vitis link to math.h library for `#include "math.h"`
    - Right-click application project -> Properties -> C/C++ Build -> Tool Settings -> ARM v7 gcc linker -> Libraries
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/RCAP.png?raw=true)
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/linkmath.png?raw=true)
-   - add ´m´ to Libraries -> Apply and close
+   - add `m` to Libraries -> Apply and close
 
 ## Pynq-Z2 ressources:
 

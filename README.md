@@ -45,8 +45,18 @@ Tested with:
    - Add folder with new IP (likely HLS project folder)
    - Can now add nn_inference to block design with 'Add IP' (Ctrl+i)
 3. Create Block Design and add ZYNQ7 Processing System and then Run Block Automation
-4. 
-
+4. Double click the Zynq module and edit the green IO peripheral fields to only have a tick on UART 0
+5. Add Axi BRAM Controller and then Run Block Automation
+6. Double click axi_bram_ctrl_0 module and edit Number of BRAM interfaces to 1
+7. Add Nn_inference **without** running block automation
+8. From sources, drag in fix_address, not_gate, and nn_ctrl modules. 
+   - nn_ctrl: Connect all ap_* ports **except** ap_rst to the corresponding port on nn_inference module. Make all 4 led_ctrl* external. Connect nn_res_in to ap_return on nn_inference. Connect rstb_busy to corresponding port on axi_bram_ctrl_0_bram. Connect i_Clk to FCLK_CLK0 on the Zynq7 module.
+   - fix_address: connect addr_in to input_img_address on nn_inference module. If widths do not match, double click on fix_address and edit. Expand BRAM_PORTB on axi_bram_ctrl_0_bram and connect addrb to addr_out on fix_address.
+   - not_gate: Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
+   - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram. Connect input_img_c0 to enb on axi_bram_ctrl_0_bram.
+   - Connect clkb on axi_bram_ctrl_0_bram to FCLK_CLK0.
+   - Regenerate layout and it should look similar to the below image:
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/vivado_diagram.png?raw=true)
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

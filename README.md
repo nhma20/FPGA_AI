@@ -24,6 +24,7 @@ Tested with:
 - Loads dataset, defines, trains and tests simple network, extracts weights.
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with: `python3 mnist_net.py`
+- Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
 
 
 ## Create HLS project

@@ -82,6 +82,8 @@ Tested with:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_testing.jpg?raw=true)
 
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_test_gif.gif?raw=true)
+
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.
    - Reduces latency ~10x

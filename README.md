@@ -65,6 +65,19 @@ Tested with:
 13. Finally, go to File -> Export Hardware -> Next -> Include bitstream -> Next -> Location -> Next -> Finish
 
 
+## Create Vitis project
+1. Open Vitis -> Create platform project -> name -> Next -> Browse to where you saved the exported hardware -> Finish.
+2. File -> New -> Application Project -> Next -> Select your platform project -> name -> Next -> Next -> Select Hello World -> Finish. 
+3. Insert the C code from the helloworld.c file in this repository. Make sure NUM_INPUTS matches the parameters of the network and hardware. 
+4. Save and right-click application project to build it. 
+5. Right-click application project and Run As -> Launch Hardware to deploy on Pynq-Z2 board. Some of the 4 LED[0:3] should light up. 
+
+
+## Test FPGA neural network with weights_UART.py
+1. Find port number of Pynq-Z2 board (e.g. `ls /dev/` and look for ttyUSB*)
+2. Run weights_UART.py with port as argument, e.g.: `python3 weights_UART.py -port /dev/ttyUSB1`
+3. The script sends a random test image from the dataset to the Pynq board over UART and outputs the corresponding label. Hopefully LED[0:3] lights up in the same binary number as the test image label.
+
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

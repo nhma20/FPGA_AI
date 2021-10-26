@@ -34,7 +34,8 @@ Tested with:
 5. (edit files)
 6. Run C Simulation to verify design with testbench file
 7. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
-8. (Run Cosimulation)
+   - This step outputs the estimated ressource usage, timings, and other relevant information.
+8. (Run Cosimulation, not needed)
 9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
 
 

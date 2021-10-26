@@ -55,8 +55,16 @@ Tested with:
    - not_gate: Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
    - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram. Connect input_img_c0 to enb on axi_bram_ctrl_0_bram.
    - Connect clkb on axi_bram_ctrl_0_bram to FCLK_CLK0.
-   - Regenerate layout and it should look similar to the below image:
+   - Ricght click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/vivado_diagram.png?raw=true)
+
+9. In sources, right click on design_1.bd (in orange) and click create wrapper and let Vivado manage it.
+10. Run Synthesis (may take a while) and open Synthesized Design. In the top right corner select I/O Planning. At the bottom, select the I/O Ports window and expand Scalar ports (4).
+11. Set the I/O Std of the 4 led_ctrl* ports to LVCMOS33. From led_ctrl1 to led_ctrl4, assign the following package pins: R14, P14, N16, M14. Ctrl+s to save.
+12. Go to the block diagram, save, validate design, and then Generate Bitstream (may also take a while).
+13. Finally, go to File -> Export Hardware -> Next -> Include bitstream -> Next -> Location -> Next -> Finish
+
+
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

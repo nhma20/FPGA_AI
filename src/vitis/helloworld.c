@@ -45,8 +45,6 @@ int main()
 
     while(1)
     {
-    	/**********************************************************************************************************/
-
 		Status = 0;
 
 		while (Status < NUM_INPUTS*BYTES_PR_INPUT) {
@@ -65,22 +63,16 @@ int main()
 		for(int i = 0; i < NUM_INPUTS; i++){
 			// concatenate 8-but input messages into 32-bit values
 			tempInt = ((BufferPtr_rx[i*4+3]<<24) | (BufferPtr_rx[i*4+2]<<16) | (BufferPtr_rx[i*4+1]<<8) | BufferPtr_rx[i*4]);
-			// prints current calues in BRAM
+			// prints current values in BRAM
+			tempFloat = *((float *)&tempInt); 	// int bits to float
 			char buffer2[10];
-			sprintf(buffer2, "%u", tempInt);
+			sprintf(buffer2, "%f", tempFloat);//tempInt);
 			xil_printf("BRAM[%d]:", i);
 			xil_printf(buffer2);
 			print("\n\r");
 
 			BRAM(i) = tempInt; // write to BRAM
 		}
-
-		tempFloat = *((float *)&tempInt); 	// int bits to float
-		// float sanity check
-		xil_printf("tempInt: %d\n\r", tempInt);
-		char buffer1[100];
-		sprintf(buffer1, "tempFloat: %f\n\r", tempFloat);
-		xil_printf(buffer1);
     }
 
     print("Shutting down");
@@ -119,4 +111,3 @@ int xuartps_init(){
 	}
 	return XST_SUCCESS;
 }
-

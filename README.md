@@ -57,7 +57,7 @@ Tested with:
    - not_gate: Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
    - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram. Connect input_img_c0 to enb on axi_bram_ctrl_0_bram.
    - Connect clkb on axi_bram_ctrl_0_bram to FCLK_CLK0.
-   - Ricght click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
+   - Right-click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/vivado_diagram.png?raw=true)
 
 9. In sources, right click on design_1.bd (in orange) and click create wrapper and let Vivado manage it.

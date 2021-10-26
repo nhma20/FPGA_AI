@@ -6,7 +6,7 @@ Introduction to AI on FPGAs
 
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
-- `Vivado / Vitis 2021.1` (with cable drivers and board files installed)
+- `Vivado / Vitis / Vitis HLS 2021.1` (with cable drivers and board files installed)
    - Place board_files folder in .../Xilinx/Vivado/2021.1/data/boards/ directory to install pynq-z2 board files.
 - `Tensorflow 2.6.0`
 - `OpenCV 4.2.0`

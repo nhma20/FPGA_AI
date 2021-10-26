@@ -114,11 +114,3 @@ Tested with:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/xc7z020.png?raw=true)
 
-## Vivado example block design:
-
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_vivado.png?raw=true)
-
-
-
-## TODO
-:yellow_circle: Set up UART to send images to PL for inference

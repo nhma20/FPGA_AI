@@ -12,9 +12,17 @@ Tested with:
 - `OpenCV 4.2.0`
 - `Python 3.8.10`
 
+## Flow
+1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
+2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
+3. Create Vivado project with files from this repository (see steps further down in this readme). Customize modules to fit network and IP as defined in steps above. Then generate bitstream and export hardware (with bitstream).
+4. Create Vitis platform project and application project (see steps further down in this readme). Customize code to fit hardware as defined in the above steps. Build project and deploy on the Pynq-Z2 board.
+5. Use `weights_UART.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
+
+
 ## mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
-- Edit to customize network for performance and/or accuracy (dims, model, epochs etc)
+- Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with: `python3 mnist_net.py`
 
 
@@ -28,6 +36,16 @@ Tested with:
 7. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
 8. (Run Cosimulation)
 9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
+
+
+## Create Vivado project
+1. Open Vivado -> Next -> Name and location, tick create subdirectory -> Next -> RTL Project, untick Do not specify sources -> Next -> Add Directories -> .../FPGA_AI/src/vhdl/ -> Next -> Next -> Under Boards choose pynq-z2 -> Next -> Finish
+2. Let Vivado find custom IPs
+   - Tools -> IP -> Repository
+   - Add folder with new IP (likely HLS project folder)
+   - Can now add nn_inference to block design with 'Add IP' (Ctrl+i)
+3. Create Block Design and add ZYNQ7 Processing System and then Run Block Automation
+4. 
 
 
 ## Speed up HLS implementation
@@ -55,8 +73,6 @@ Tested with:
    - Add folder with new IP (likely HLS project folder)
    - Can now add nn_inference to block design with 'Add IP' (Ctrl+i)
 2. nn_inference works in Vivado simulation and hardware
-   - Might have to simulate first
-   - Then generate bitstream and deploy on FPGA
 3. Vitis link to math.h library for `#include "math.h"`
    - Right-click application project -> Properties -> C/C++ Build -> Tool Settings -> ARM v7 gcc linker -> Libraries
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/RCAP.png?raw=true)

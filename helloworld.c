@@ -6,7 +6,6 @@
 #include "xbram.h"
 #include "xparameters.h"
 #include <unistd.h>
-#include <math.h>
 
 #define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
 #define NUM_INPUTS		100 // number of pixel in input image
@@ -38,7 +37,7 @@ int main()
 	uint8_t BufferPtr_rx[NUM_INPUTS*BYTES_PR_INPUT] = {0x00};
 
 	int Status = 0;
-	int oldStatus = -1;
+	//int oldStatus = -1;
 	uint32_t tempInt;
 	float tempFloat = 0.0;
 
@@ -53,13 +52,13 @@ int main()
 		while (Status < NUM_INPUTS*BYTES_PR_INPUT) {
 			BufferPtr_rx[Status] = XUartPs_RecvByte(XPAR_XUARTPS_0_BASEADDR); // read UART
 			Status ++;
-			if(oldStatus != Status){ // print received value after read
+			/*if(oldStatus != Status){ // print received value after read
 				print("Index ");
 				xil_printf("%u", Status-1);
 				xil_printf(" received: %u", BufferPtr_rx[Status-1]);
 				print("\n\r");
 				oldStatus = Status;
-			}
+			}*/
 		}
 
 

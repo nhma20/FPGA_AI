@@ -17,7 +17,7 @@ Tested with:
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
 3. Create Vivado project with files from this repository (see steps further down in this readme). Customize modules to fit network and IP as defined in steps above. Then generate bitstream and export hardware (with bitstream).
 4. Create Vitis platform project and application project (see steps further down in this readme). Customize code to fit hardware as defined in the above steps. Build project and deploy on the Pynq-Z2 board.
-5. Use `weights_UART.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
+5. Use `uart_test_nn.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
 
 
 ## mnist_net.py
@@ -75,9 +75,9 @@ Tested with:
 5. Right-click application project and Run As -> Launch Hardware to deploy on Pynq-Z2 board. Some of the 4 LED[0:3] should light up. 
 
 
-## Test FPGA neural network with weights_UART.py
+## Test FPGA neural network with uart_test_nn.py
 1. Find port number of Pynq-Z2 board (e.g. `ls /dev/` and look for ttyUSB*)
-2. Run weights_UART.py with port as argument, e.g.: `python3 weights_UART.py -port /dev/ttyUSB1`
+2. Run weights_UART.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Pynq board over UART and outputs the corresponding label. Hopefully LED[0:3] lights up in the same binary number as the test image label.
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_test.jpg?raw=true)

@@ -32,12 +32,11 @@ Tested with:
 2. Design files: Add files -> matmul.cpp and matmul.hpp -> Top function -> nn_inference -> Next
 3. TestBench files: Add files -> matmul_tb.cpp -> Next
 4. Select Configuration: Part -> Boards -> pynq-z2 -> Finish
-5. (edit files)
+5. (edit files to fit any network customization)
 6. Run C Simulation to verify design with testbench file
 7. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
    - This step outputs the estimated ressource usage, timings, and other relevant information.
-8. (Run Cosimulation, not needed)
-9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
+8. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
 
 
 ## 3) Create Vivado project

@@ -32,10 +32,8 @@ def main():
 	for j in range(2): # train and test	
 		for i in range(10): # 0 to 9
 			if j == 0:
-				#read_folder = os.path.expanduser("~") + '/Downloads/MNIST_Dataset_JPG/MNIST_JPG_training/' + str(i) + '/'
 				read_folder = dataset_dir + '/MNIST_JPG_training/' + str(i) + '/'
 			if j == 1:
-				#read_folder = os.path.expanduser("~") + '/Downloads/MNIST_Dataset_JPG/MNIST_JPG_testing/' + str(i) + '/'
 				read_folder = dataset_dir + '/MNIST_JPG_testing/' + str(i) + '/'
 			for filename in os.listdir(read_folder):
 				img = cv2.imread(os.path.join(read_folder,filename),0) # read img as grayscale
@@ -57,11 +55,6 @@ def main():
 	## Shuffle dataset
 	train_images, train_labels = shuffle(train_images, train_labels)
 	test_images, test_labels = shuffle(test_images, test_labels)
-
-	#print(train_images.shape)
-	#print(train_labels.shape)
-	#print(type(train_images[0][0][0]))
-	#print(type(train_labels[0]))
 
 	## Define network structure
 	model = Sequential([

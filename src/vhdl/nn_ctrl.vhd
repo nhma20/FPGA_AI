@@ -45,6 +45,14 @@ entity nn_ctrl is
             led_ctrl3: out std_logic;
             led_ctrl4: out std_logic;
             
+            i_BRAM_addr: in std_logic_vector(31 downto 0);
+            i_BRAM_ce  : in std_logic;
+                        
+            o_BRAM_addr: out std_logic_vector(31 downto 0);
+            o_BRAM_ce  : out std_logic;
+            o_BRAM_wr  : out std_logic_vector(3 downto 0);
+            o_BRAM_din : out std_logic_vector(31 downto 0);
+            
             nn_res_in: in  std_logic_vector(31 downto 0)
            
            );
@@ -62,6 +70,11 @@ architecture Behavioral of nn_ctrl is
     
     signal pred         :   integer := 0;
     
+    signal s_BRAM_ce    :   std_logic := '0';
+    signal s_BRAM_addr  :   std_logic_vector(31 downto 0) := (others=>'0');
+    signal s_BRAM_wr    :   std_logic_vector(3 downto 0);
+    signal s_BRAM_din   :   std_logic_vector(31 downto 0);
+    
 begin
 
     ------------------  Start NN  ------------------
@@ -75,16 +88,22 @@ begin
         end if;
         
         if cnt > 2 then
-            if ap_ready = '1' or ap_idle = '1' then
-                if rstb_busy = '0' then
-                    start_signal <= '1';
-                else 
-                    start_signal <= '0';
+            if ap_done = '0' then
+                if ap_idle = '1' then --ap_ready = '1' or 
+                    if rstb_busy = '0' then
+                        start_signal <= '1';
+                    else 
+                        start_signal <= '0';
+                    end if;
                 end if;
             end if;
         end if;
     END PROCESS;
 
+    o_BRAM_addr <= (30 => '1', 9 => '1', others => '0') when ap_done = '1' else i_BRAM_addr;
+    o_BRAM_ce   <= '1' when ap_done = '1' else i_BRAM_ce;
+    o_BRAM_wr   <= "1111" when ap_done = '1' else "0000";
+    o_BRAM_din  <= nn_res_in;
 
     pred <= to_integer(signed(nn_res_in));
 

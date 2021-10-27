@@ -29,6 +29,12 @@ def main():
 			values = bytearray(struct.pack("f", img[i][j])) # turn pixel values into bytearray
 			ser.write(values) # send bytearray over UART
 
+	nn_res = ""
+	while "output" not in nn_res:
+		nn_res = ser.readline().decode('UTF-8')
+		
+	print(nn_res)
+	
 	
 if __name__=="__main__":
     main()

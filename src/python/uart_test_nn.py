@@ -27,10 +27,7 @@ def main():
 	for i in range(dims[1]):
 		for j in range(dims[0]):
 			values = bytearray(struct.pack("f", img[i][j])) # turn pixel values into bytearray
-			#print([ "0x%02x" % b for b in values ])
 			ser.write(values) # send bytearray over UART
-			#time.sleep(0.001)
-
 
 	
 if __name__=="__main__":

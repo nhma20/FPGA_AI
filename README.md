@@ -103,18 +103,6 @@ Tested with:
    - https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1399-vitis-hls.pdf
 
 
-## Stuff
-1. Let Vivado find custom IPs
-   - Tools -> IP -> Repository
-   - Add folder with new IP (likely HLS project folder)
-   - Can now add nn_inference to block design with 'Add IP' (Ctrl+i)
-2. nn_inference works in Vivado simulation and hardware
-3. Vitis link to math.h library for `#include "math.h"`
-   - Right-click application project -> Properties -> C/C++ Build -> Tool Settings -> ARM v7 gcc linker -> Libraries
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/RCAP.png?raw=true)
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/linkmath.png?raw=true)
-   - add `m` to Libraries -> Apply and close
-
 ## Pynq-Z2 available resources:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/xc7z020.png?raw=true)

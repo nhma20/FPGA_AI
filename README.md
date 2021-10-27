@@ -55,10 +55,10 @@ Tested with:
 6. Double click axi_bram_ctrl_0 module and edit Number of BRAM interfaces to 1
 7. Add Nn_inference **without** running block automation
 8. From sources, drag in fix_address, not_gate, and nn_ctrl modules. 
-   - nn_ctrl: Connect all ap_* ports **except** ap_rst to the corresponding port on nn_inference module. Make all 4 led_ctrl* external. Connect nn_res_in to ap_return on nn_inference. Connect rstb_busy to corresponding port on axi_bram_ctrl_0_bram. Connect i_Clk to FCLK_CLK0 on the Zynq7 module.
-   - fix_address: connect addr_in to input_img_address on nn_inference module. If widths do not match, double click on fix_address and edit. Expand BRAM_PORTB on axi_bram_ctrl_0_bram and connect addrb to addr_out on fix_address.
+   - nn_ctrl: Connect all ap_* ports **except** ap_rst to the corresponding port on nn_inference module. Make all 4 led_ctrl* external. Connect nn_res_in to ap_return on nn_inference. Connect rstb_busy to corresponding port on axi_bram_ctrl_0_bram. Connect i_Clk to FCLK_CLK0 on the Zynq7 module. Connect i_BRAM_ce to input_img_ce0 on nn_inference module. Connect i_BRAM_addr to addr_out on fix_address module. Connect o_BRAM_addr to addrb and o_BRAM_ce to enb and o_BRAM_wr to web and o_BRAM_din to dinb on axi_bram_ctrl_0_bram.
+   - fix_address: connect addr_in to input_img_address on nn_inference module. If widths do not match, double click on fix_address and edit. 
    - not_gate: Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
-   - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram. Connect input_img_c0 to enb on axi_bram_ctrl_0_bram.
+   - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram.
    - Connect clkb on axi_bram_ctrl_0_bram to FCLK_CLK0.
    - Right-click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/vivado_diagram.png?raw=true)
@@ -112,7 +112,6 @@ Tested with:
 
 
 ## Proposed exercises
-- Send the network result back to the host PC through UART, perhaps read and print the result with the uart_nn_test script.
 - Evaluate the network inference time in hardware and send it to host PC via UART. Have a look at the HLS ap_ctrl_hs interface image above for inspiration on which signals from the nn_inference module might be interesting.
 - Change network input image resolution. At least the following needs attention: network training script (`dims`), HLS (`n_inputs`), Vivado (`fix_address`), Vitis (`NUM_INPUTS`), network testing script (`dims`) - possibly more.
 - Quantize network to reduce inference time - change input data type to 16 or 8-bit datatype instead of 32-bit float. The following links may be helpful:

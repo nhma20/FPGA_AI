@@ -30,8 +30,8 @@ def main():
 			ser.write(values) # send bytearray over UART
 
 	nn_res = ""
-	while "output" not in nn_res:
-		nn_res = ser.readline().decode('UTF-8')
+	while "output" not in nn_res: # check if nn output received
+		nn_res = ser.readline().decode('UTF-8') # decode received bytes
 		
 	print(nn_res)
 	

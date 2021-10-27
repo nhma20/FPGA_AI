@@ -73,6 +73,9 @@ int main()
 
 			BRAM(i) = tempInt; // write to BRAM
 		}
+
+		sleep(0.1);
+		xil_printf("Network output: %u\n\r", BRAM(128));
     }
 
     print("Shutting down");

@@ -20,14 +20,14 @@ Tested with:
 5. Use `uart_test_nn.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
 
 
-## mnist_net.py
+## 1) mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with: `python3 mnist_net.py`
 - Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
 
 
-## Create HLS project
+## 2) Create HLS project
 1. Open HLS -> Create Project -> Name and Location -> Next
 2. Design files: Add files -> matmul.cpp and matmul.hpp -> Top function -> nn_inference -> Next
 3. TestBench files: Add files -> matmul_tb.cpp -> Next
@@ -40,7 +40,7 @@ Tested with:
 9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
 
 
-## Create Vivado project
+## 3) Create Vivado project
 1. Open Vivado -> Next -> Name and location, tick create subdirectory -> Next -> RTL Project, untick Do not specify sources -> Next -> Add Directories -> .../FPGA_AI/src/vhdl/ -> Next -> Next -> Under Boards choose pynq-z2 -> Next -> Finish
 2. Let Vivado find custom IPs
    - Tools -> IP -> Repository
@@ -67,7 +67,7 @@ Tested with:
 13. Finally, go to File -> Export Hardware -> Next -> Include bitstream -> Next -> Location -> Next -> Finish
 
 
-## Create Vitis project
+## 4) Create Vitis project
 1. Open Vitis -> Create platform project -> name -> Next -> Browse to where you saved the exported hardware -> Finish.
 2. File -> New -> Application Project -> Next -> Select your platform project -> name -> Next -> Next -> Select Hello World -> Finish. 
 3. Insert the C code from the helloworld.c file in this repository. Make sure NUM_INPUTS matches the parameters of the network and hardware. 
@@ -75,7 +75,7 @@ Tested with:
 5. Right-click application project and Run As -> Launch Hardware to deploy on Pynq-Z2 board. Some of the 4 LED[0:3] should light up. 
 
 
-## Test FPGA neural network with uart_test_nn.py
+## 5) Test FPGA neural network with uart_test_nn.py
 1. Find port number of Pynq-Z2 board (e.g. `ls /dev/` and look for ttyUSB*)
 2. Run weights_UART.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Pynq board over UART and outputs the corresponding label. Hopefully LED[0:3] lights up in the same binary number as the test image label.
@@ -112,10 +112,10 @@ Tested with:
 - Send the network result back to the host PC through UART, perhaps read and print the result with the uart_nn_test script.
 - Evaluate the network inference time in hardware and send it to host PC via UART. Have a look at the HLS ap_ctrl_hs interface image above for inspiration on which signals from the nn_inference module might be interesting.
 - Change network input image resolution. At least the following needs attention: network training script (`dims`), HLS (`n_inputs`), Vivado (`fix_address`), Vitis (`NUM_INPUTS`), network testing script (`dims`) - possibly more.
-- Quantize network - change input data type to 16 or 8-bit datatype instead of 32-bit float. The following links may be helpful:
+- Quantize network to reduce inference time - change input data type to 16 or 8-bit datatype instead of 32-bit float. The following links may be helpful:
    - [Tensorflow guide on quantization after training](https://www.tensorflow.org/model_optimization/guide/quantization/post_training)
    - [Tensorflow guide on quantization before training](https://www.tensorflow.org/model_optimization/guide/quantization/training)
-- Customize network parameters to improve accuracy and/or inference time. Some interesering parameters: input image resolution, number of layers, number of neurons in each layer, number of training epochs etc.
+- Customize network parameters to improve accuracy and/or inference time. Some interesting parameters: input image resolution, number of layers, number of neurons in each layer, number of training epochs etc.
 - Optimize HLS implementation to decrease latency using directives/#pragmas to e.g. unroll loops.
 
 

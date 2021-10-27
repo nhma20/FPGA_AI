@@ -119,8 +119,8 @@ def main():
 
 
 
-
-	img_filename = "img_pixel_vals.txt" 
+	
+	"""img_filename = "img_pixel_vals.txt" 
 	open(img_filename, 'w').close() # clear file
 	file = open(img_filename,"a") 
 	file.write('{')
@@ -132,10 +132,10 @@ def main():
 		if i != dims[0]-1:
 			file.write(', \n')
 	file.write('}')
-	file.close()
+	file.close()"""
 
 
-	img_filename = "img_pixel_vals_vhdl_array.txt" 
+	"""img_filename = "img_pixel_vals_vhdl_array.txt" 
 	open(img_filename, 'w').close() # clear file
 	file = open(img_filename,"a") 
 	file.write('(')
@@ -150,10 +150,10 @@ def main():
 		if i != dims[0]-1:
 			file.write(', \n')
 	file.write(')')
-	file.close()
+	file.close()"""
 
 
-	img_filename = "img_pixel_vals.coe" 
+	"""img_filename = "img_pixel_vals.coe" 
 	open(img_filename, 'w').close() # clear file
 	file = open(img_filename,"a") 
 	file.write('memory_initialization_radix=2;\n') # radix 2 = binary, radix 10 = decimal
@@ -166,7 +166,7 @@ def main():
 				file.write(';')
 			else:
 				file.write(',\n')
-	file.close()
+	file.close()"""
 
 	print("test_image[0] label: ", test_labels[0])
 

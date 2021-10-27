@@ -26,6 +26,7 @@ Tested with:
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with : `python3 mnist_net.py -dataset_dir <PATH_TO_DATASET>` e.g. `python3 mnist_net.py -dataset_dir /home/nm/Downloads/MNIST_Dataset_JPG/`
 - Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
+- Should generate several .txt files containing the weights of the network.
 
 
 ## 2) Create HLS project

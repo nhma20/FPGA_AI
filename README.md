@@ -5,6 +5,8 @@ Introduction to AI on FPGAs
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 ### Prerequisites
+Pynq-Z2 board, PC, USB-A to micro USB cable.
+
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
 - `Vivado / Vitis / Vitis HLS 2021.1` (with cable drivers and board files installed)

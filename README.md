@@ -115,7 +115,20 @@ Tested with:
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/linkmath.png?raw=true)
    - add `m` to Libraries -> Apply and close
 
-## Pynq-Z2 ressources:
+## Pynq-Z2 available resources:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/xc7z020.png?raw=true)
+
+
+## Proposed exercises
+- Send the network result back to the host PC through UART, perhaps read and print the result with the uart_nn_test script.
+- Evaluate the network inference time in hardware and send it to host PC via UART. Have a look at the HLS ap_ctrl_hs interface image above for inspiration on which signals from the nn_inference module might be interesting.
+- Change network input image resolution. At least the following needs attention: network training script (`dims`), HLS (`n_inputs`), Vivado (`fix_address`), Vitis (`NUM_INPUTS`), network testing script (`dims`) - possibly more.
+- Quantize network - change input data type to 16 or 8-bit datatype instead of 32-bit float. The following links may be helpful:
+   - [Tensorflow guide on quantization after training](https://www.tensorflow.org/model_optimization/guide/quantization/post_training)
+   - [Tensorflow guide on quantization before training](https://www.tensorflow.org/model_optimization/guide/quantization/training)
+- Customize network parameters to improve accuracy and/or inference time. Some interesering parameters: input image resolution, number of layers, number of neurons in each layer, number of training epochs etc.
+- Optimize HLS implementation to decrease latency using directives/#pragmas to e.g. unroll loops.
+
+
 

@@ -1,9 +1,10 @@
 # FPGA_AI
 Introduction to AI on FPGAs
 
-### Prerequisites
+- Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
+### Prerequisites
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
 - `Vivado / Vitis / Vitis HLS 2021.1` (with cable drivers and board files installed)
@@ -23,7 +24,7 @@ Tested with:
 ## 1) Train network and extract weights with mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
-- Run with: `python3 mnist_net.py`
+- Run with : `python3 mnist_net.py -dataset_dir <PATH_TO_DATASET>` e.g. `python3 mnist_net.py -dataset_dir /home/nm/Downloads/MNIST_Dataset_JPG/`
 - Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
 
 

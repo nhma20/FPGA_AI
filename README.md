@@ -20,7 +20,7 @@ Tested with:
 5. Use `uart_test_nn.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
 
 
-## 1) mnist_net.py
+## 1) Train network and extract weights with mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with: `python3 mnist_net.py`

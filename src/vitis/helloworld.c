@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 #define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
-#define NUM_INPUTS		100 // number of pixel in input image
+#define NUM_INPUTS		225 // number of pixel in input image
 #define BYTES_PR_INPUT	4 	// 32 bit float = 4 bytes
 #define BASE_ADDR		XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR	 // from xparameters.h
 

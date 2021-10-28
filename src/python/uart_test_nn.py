@@ -12,7 +12,7 @@ def main():
 		port = str(args[1])	
 
 
-	dims = (10,10) # dimensions of images to train/test with
+	dims = (15,15) # dimensions of images to train/test with
 
 	randomint = random.randrange(10)
 	read_dir = os.path.expanduser("~") + '/Downloads/MNIST_Dataset_JPG/MNIST_JPG_testing/' + str(randomint) + '/'

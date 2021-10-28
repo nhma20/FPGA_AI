@@ -27,7 +27,7 @@ def main():
 	test_images = []
 	test_labels = []
 
-	dims = (10,10) # dimensions of images to train/test with
+	dims = (15,15) # dimensions of images to train/test with
 
 	for j in range(2): # train and test	
 		for i in range(10): # 0 to 9
@@ -59,9 +59,10 @@ def main():
 	## Define network structure
 	model = Sequential([
 		Flatten(input_shape=dims),		# reshape 15x15 to 225, layer 0
-		Dense(32, activation='relu', use_bias=False),	# dense layer 1
-		Dense(16, activation='relu', use_bias=False),	# dense layer 2
-		Dense(10, activation='softmax', use_bias=False),	# dense layer 3
+		Dense(64, activation='relu', use_bias=False),	# dense layer 1
+		Dense(32, activation='relu', use_bias=False),	# dense layer 2
+		Dense(16, activation='relu', use_bias=False),	# dense layer 3
+		Dense(10, activation='softmax', use_bias=False),	# dense layer 4
 	])
 
 	model.compile(optimizer='adam',
@@ -113,7 +114,7 @@ def main():
 
 
 	
-	"""img_filename = "img_pixel_vals.txt" 
+	img_filename = "img_pixel_vals.txt" 
 	open(img_filename, 'w').close() # clear file
 	file = open(img_filename,"a") 
 	file.write('{')
@@ -125,7 +126,7 @@ def main():
 		if i != dims[0]-1:
 			file.write(', \n')
 	file.write('}')
-	file.close()"""
+	file.close()
 
 
 	"""img_filename = "img_pixel_vals_vhdl_array.txt" 

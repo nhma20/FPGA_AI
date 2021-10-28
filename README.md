@@ -119,7 +119,8 @@ Tested with:
    - [Tensorflow guide on quantization after training](https://www.tensorflow.org/model_optimization/guide/quantization/post_training)
    - [Tensorflow guide on quantization before training](https://www.tensorflow.org/model_optimization/guide/quantization/training)
 - Customize network parameters to improve accuracy and/or inference time. Some interesting parameters: input image resolution, number of layers, number of neurons in each layer, number of training epochs etc.
-- Optimize HLS implementation to decrease latency using directives/#pragmas to e.g. unroll loops.
+- Optimize HLS implementation to decrease latency using directives/#pragmas to e.g. unroll loops. 
+   - [Xilinx tips on HLS optimization](https://www.xilinx.com/html_docs/xilinx2021_1/vitis_doc/vitis_hls_optimization_techniques.html)
 
 
 

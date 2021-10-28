@@ -46,7 +46,7 @@ def main():
 						test_images.append(img / 255)
 						test_labels.append(i)
 
-	## Convert to numpy arrays, flatten images - change dimensions from Nx15x15 to Nx225
+	## Convert to numpy arrays, flatten images - change dimensions from Nx10x10 to Nx100
 	train_images = np.asarray(train_images).astype('float32')
 	test_images = np.asarray(test_images).astype('float32')
 	train_labels = np.asarray(train_labels).astype('uint8')
@@ -58,7 +58,7 @@ def main():
 
 	## Define network structure
 	model = Sequential([
-		Flatten(input_shape=dims),		# reshape 15x15 to 225, layer 0
+		Flatten(input_shape=dims),		# reshape 10x10 to 100, layer 0
 		Dense(32, activation='relu', use_bias=False),	# dense layer 1
 		Dense(16, activation='relu', use_bias=False),	# dense layer 2
 		Dense(10, activation='softmax', use_bias=False),	# dense layer 3

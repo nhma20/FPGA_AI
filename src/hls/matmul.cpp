@@ -147,7 +147,7 @@ void hw_act_layer4(float input[1][n_layer4], int &pred){
 
 
 /* Connect NN Layers */
-int nn_inference(float input_img[100]){
+int nn_inference(float input_img[n_inputs]){
 //#pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
 
 	float temp_output[1][n_layer1] = {1};

@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity fix_address is
 
     GENERIC(
-       nn_address_output_width              : INTEGER := 7 -- numbers to average over
+       nn_address_output_width              : INTEGER := 8 -- numbers to average over
        );
 
     Port ( addr_in : in STD_LOGIC_VECTOR (nn_address_output_width-1 downto 0);

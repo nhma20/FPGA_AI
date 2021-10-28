@@ -15,7 +15,7 @@ void hwmm_layer3(float input[1][n_layer2], const float weights[n_layer2][n_layer
 void hw_act_layer3(float input[1][n_layer3], int &pred);
 void hwmm_layer4(float input[1][n_layer3], const float weights[n_layer3][n_layer4], float output[1][n_layer4]);
 void hw_act_layer4(float input[1][n_layer4], int &pred);
-int nn_inference(float input_img[100]);
+int nn_inference(float input_img[n_inputs]);
 
 
 namespace weights{

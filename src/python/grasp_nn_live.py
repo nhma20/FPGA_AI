@@ -26,7 +26,7 @@ def main():
 	zeros = np.zeros(dims)
 	ones = zeros + 1
 	fig1, ax1 = plt.subplots()
-	axim1 = ax1.imshow(zeros, vmin=0, vmax=255)
+	axim1 = ax1.imshow(zeros, cmap='gray', vmin=0, vmax=255)
 
 
 	while(cap.isOpened()):
@@ -38,8 +38,6 @@ def main():
 			
 		# Run inference on grabbed frame
 		
-		#img = cv2.imread(os.path.join(read_folder,filename),0) # read img as grayscale
-		
 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		img = cv2.resize(gray, dims, interpolation = cv2.INTER_AREA)	# resize img to fit dims
 		zeros = img
@@ -47,7 +45,7 @@ def main():
 		x = np.array([img / 255]).astype('float32')
 		x = np.expand_dims(x, axis=0)
 		result = np.argmax(model.predict(x))
-		openness = ['open','closed']
+		openness = ['open','closed', 'nothing']
 		print("NN Prediction: ", openness[result])
 
 		axim1.set_data(img)

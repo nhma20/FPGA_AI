@@ -2,7 +2,7 @@
 Introduction to AI on FPGAs
 
 - Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
-- Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
+- Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/39snNC6yg3LAN3d
 
 ### Prerequisites
 Pynq-Z2 board, PC, USB-A to micro USB cable.

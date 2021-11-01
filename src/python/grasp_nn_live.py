@@ -15,6 +15,8 @@ def main():
 
 	dims = (15,15) 
 
+	open_result = 'empty'
+
 	# Loads the weights
 	checkpoint_path = '/home/nm/FPGA_AI/src/python/grasp_nn/grasp_nn_model.h5'
 	model = load_model(checkpoint_path)
@@ -37,7 +39,6 @@ def main():
 			break
 			
 		# Run inference on grabbed frame
-		
 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		img = cv2.resize(gray, dims, interpolation = cv2.INTER_AREA)	# resize img to fit dims
 		zeros = img
@@ -46,8 +47,10 @@ def main():
 		x = np.expand_dims(x, axis=0)
 		result = np.argmax(model.predict(x))
 		openness = ['open','closed', 'nothing']
-		print("NN Prediction: ", openness[result])
-
+		if open_result != openness[result]:
+			print("NN Prediction: ", open_result)
+		open_result = openness[result]
+		
 		axim1.set_data(img)
 		fig1.canvas.flush_events()
 

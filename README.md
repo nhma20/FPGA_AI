@@ -11,6 +11,7 @@ Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
 - `Vivado / Vitis / Vitis HLS 2021.1` (with cable drivers and board files installed)
    - Place board_files folder in .../Xilinx/Vivado/2021.1/data/boards/ directory to install pynq-z2 board files.
+   - Make sure Zynq 7000 series compatibility was ticked during installation. Else, in Vivado, go to Help->Add Design Tools or Devices and add it.
 - `Tensorflow 2.6.0`
 - `OpenCV 4.2.0`
 - `Python 3.8.10`

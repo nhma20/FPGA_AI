@@ -38,10 +38,11 @@ Tested with:
 3. TestBench files: Add files -> matmul_tb.cpp -> Next
 4. Select Configuration: Part -> Boards -> pynq-z2 -> Finish
 5. (edit files to fit any network customization)
-6. Run C Simulation to verify design with testbench file
-7. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
+6. Replace template weights with new weights generated from network training script in step 1. All weights (by default layer2_weights, layer2_weights, and layer3_weights arrays) are stored in matmul.hpp file.
+7. Run C Simulation to verify design with testbench file. Output should match labels of input arrays (pixel values of test images) in matmul_tb.cpp.
+8. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
    - This step outputs the estimated ressource usage, timings, and other relevant information.
-8. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
+9. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
 
 
 ## 3) Create Vivado project

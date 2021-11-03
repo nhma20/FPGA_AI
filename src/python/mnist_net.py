@@ -1,14 +1,11 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
 import os
 import time
 import tensorflow as tf
 import struct
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Activation
+from tensorflow.keras.layers import Flatten, Dense, Activation
 from sklearn.utils import shuffle
 import sys
 

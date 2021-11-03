@@ -1,14 +1,7 @@
 import numpy as np
 import cv2
 import tensorflow as tf
-import struct
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Flatten
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.layers import Activation
-from keras.models import load_model
 import matplotlib.pyplot as plt
-import time
 
 
 def main():
@@ -17,13 +10,14 @@ def main():
 
 	open_result = 'empty'
 
-	# Loads the weights
+	# Loads the weights (.h5 file) saved during training of network
 	checkpoint_path = '/home/nm/FPGA_AI/src/python/grasp_nn/grasp_nn_model.h5'
 	model = load_model(checkpoint_path)
 	
 	# Opens the inbuilt camera to capture video.
 	cap = cv2.VideoCapture(0)
 
+	# matplotlib live plot stuff
 	plt.ion()
 	zeros = np.zeros(dims)
 	ones = zeros + 1
@@ -46,11 +40,14 @@ def main():
 		x = np.array([img / 255]).astype('float32')
 		x = np.expand_dims(x, axis=0)
 		result = np.argmax(model.predict(x))
+		
+		# print network prediction
 		openness = ['open','closed', 'nothing']
 		if open_result != openness[result]:
 			print("NN Prediction: ", open_result)
 		open_result = openness[result]
 		
+		# update live input plot
 		axim1.set_data(img)
 		fig1.canvas.flush_events()
 

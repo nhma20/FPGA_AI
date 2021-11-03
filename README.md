@@ -17,6 +17,9 @@ Tested with:
 - `Python 3.8.10`
 
 ## Flow
+
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/python_to_HW_NN.png?raw=true)
+
 1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
 3. Create Vivado project with files from this repository (see steps further down in this readme). Customize modules to fit network and IP as defined in steps above. Then generate bitstream and export hardware (with bitstream).

@@ -1,21 +1,12 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: SDU, UAS, DIII
+-- Engineer: Nicolaj Malle
 -- 
 -- Create Date: 10/08/2021 05:45:27 PM
--- Design Name: 
--- Module Name: not_gate - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+-- Project Name: FPGA_AI
+-- Target Devices: PYNQ-Z2
+-- Tool Versions: 2021.1
+-- Description: Inverts input.
 ----------------------------------------------------------------------------------
 
 

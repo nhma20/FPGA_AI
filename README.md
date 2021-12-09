@@ -138,20 +138,14 @@ Tested with:
 
 The [src](/src/) directory contains the source files of this repository divided into the following subdirectories:
 
-[hls](/src/hls/)
-- C++ code to generate simple neural network IP with high-level synthesis.
-
-
-[python](/src/python/)
-- Python scripts to train a simple neural network and extract its weights, and communicate with generated neural network inference hardware module.
-
-
-[vhdl](/src/vhdl/)
-- VHDL code files to control the generated neural network inference hardware module.
-
-
-[vitis](/src/vitis/)
-- Baremetal C code application to interface between host PC and generated neural network inference hardware module.
+- [hls](/src/hls/)
+   - C++ code to generate simple neural network IP with high-level synthesis.
+- [python](/src/python/)
+   - Python scripts to train a simple neural network and extract its weights, and communicate with generated neural network inference hardware module.
+- [vhdl](/src/vhdl/)
+   - VHDL code files to control the generated neural network inference hardware module.
+- [vitis](/src/vitis/)
+   - Baremetal C code application to interface between host PC and generated neural network inference hardware module.
 
 
 Created by Nicolaj Malle, PhD fellow at [University of Southern Denmark](https://www.sdu.dk/en) > [UAS Center](https://www.sdu.dk/en/forskning/sduuascenter) > [DIII](https://www.sdu.dk/en/forskning/sduuascenter/researchareas/diii)

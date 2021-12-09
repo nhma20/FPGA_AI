@@ -134,3 +134,8 @@ Tested with:
 
 
 
+## About repository
+Created by Nicolaj Malle, PhD fellow at University of [Southern Denmark](https://www.sdu.dk/en) > [UAS Center](https://www.sdu.dk/en/forskning/sduuascenter) > [DIII](https://www.sdu.dk/en/forskning/sduuascenter/researchareas/diii)
+Contact: [mailto](nhma@mmmi.sdu.dk)
+
+If you use this work, please cite TBD.

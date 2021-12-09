@@ -1,8 +1,10 @@
-# FPGA_AI
-Introduction to AI on FPGAs
+Educational Platform for FPGA Accelerated AI inRobotics
 
-- Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
-- Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
+============================================================================
+
+Introduction to AI on FPGAs
+----------------------------------------------------------------------------
+
 
 ### Prerequisites
 Pynq-Z2 board, PC, USB-A to micro USB cable.
@@ -26,6 +28,10 @@ Tested with:
 4. Create Vitis platform project and application project (see steps further down in this readme). Customize code to fit hardware as defined in the above steps. Build project and deploy on the Pynq-Z2 board.
 5. Use `uart_test_nn.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
 
+
+## 0) Prepare workspace
+- Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
+- Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 ## 1) Train network and extract weights with mnist_net.py
 - Loads dataset, defines, trains and tests simple network, extracts weights.

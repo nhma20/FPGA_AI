@@ -158,7 +158,7 @@ The [src](/src/) directory contains the source files of this repository divided 
 - Baremetal C code application to interface between host PC and generated neural network inference hardware module.
 
 
-Created by Nicolaj Malle, PhD fellow at University of [Southern Denmark](https://www.sdu.dk/en) > [UAS Center](https://www.sdu.dk/en/forskning/sduuascenter) > [DIII](https://www.sdu.dk/en/forskning/sduuascenter/researchareas/diii)
+Created by Nicolaj Malle, PhD fellow at [University of Southern Denmark](https://www.sdu.dk/en) > [UAS Center](https://www.sdu.dk/en/forskning/sduuascenter) > [DIII](https://www.sdu.dk/en/forskning/sduuascenter/researchareas/diii)
 
 Contact: <nhma@mmmi.sdu.dk>
 

@@ -8,9 +8,9 @@
 #include <unistd.h>
 
 #define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
-#define NUM_INPUTS		100 // number of pixel in input image
-#define BYTES_PR_INPUT	4 	// 32 bit float = 4 bytes
-#define BASE_ADDR		XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR	 // from xparameters.h
+#define NUM_INPUTS		100 					// number of pixel in input image
+#define BYTES_PR_INPUT		4 					// 32 bit float = 4 bytes
+#define BASE_ADDR		XPAR_AXI_BRAM_CTRL_0_S_AXI_BASEADDR	// from xparameters.h
 
 XBram             	x_bram;
 XBram_Config    	*px_config;
@@ -37,7 +37,6 @@ int main()
 	uint8_t BufferPtr_rx[NUM_INPUTS*BYTES_PR_INPUT] = {0x00};
 
 	int Status = 0;
-	//int oldStatus = -1;
 	uint32_t tempInt;
 	float tempFloat = 0.0;
 
@@ -50,23 +49,16 @@ int main()
 		while (Status < NUM_INPUTS*BYTES_PR_INPUT) {
 			BufferPtr_rx[Status] = XUartPs_RecvByte(XPAR_XUARTPS_0_BASEADDR); // read UART
 			Status ++;
-			/*if(oldStatus != Status){ // print received value after read
-				print("Index ");
-				xil_printf("%u", Status-1);
-				xil_printf(" received: %u", BufferPtr_rx[Status-1]);
-				print("\n\r");
-				oldStatus = Status;
-			}*/
 		}
 
 
 		for(int i = 0; i < NUM_INPUTS; i++){
-			// concatenate 8-but input messages into 32-bit values
+			// concatenate 8-bit input messages into 32-bit values
 			tempInt = ((BufferPtr_rx[i*4+3]<<24) | (BufferPtr_rx[i*4+2]<<16) | (BufferPtr_rx[i*4+1]<<8) | BufferPtr_rx[i*4]);
 			// prints current values in BRAM
 			tempFloat = *((float *)&tempInt); 	// int bits to float
 			char buffer2[10];
-			sprintf(buffer2, "%f", tempFloat);//tempInt);
+			sprintf(buffer2, "%f", tempFloat);
 			xil_printf("BRAM[%d]:", i);
 			xil_printf(buffer2);
 			print("\n\r");

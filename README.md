@@ -136,7 +136,7 @@ Tested with:
 
 ## About repository
 
-The [src](/src/) directory contains the source files of this repository.
+The [src](/src/) directory contains the source files of this repository divided into the following subdirectories:
 
 [hls](/src/hls/)
 

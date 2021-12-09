@@ -1,5 +1,4 @@
-Educational Platform for FPGA Accelerated AI inRobotics
-
+Educational Platform for FPGA Accelerated AI in Robotics
 ============================================================================
 
 Introduction to AI on FPGAs

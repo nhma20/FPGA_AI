@@ -1,22 +1,15 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Company: SDU, UAS, DIII
+-- Engineer: Nicolaj Malle
 -- 
 -- Create Date: 10/08/2021 12:17:41 PM
--- Design Name: 
--- Module Name: nn_ctrl - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
+-- Project Name: FPGA_AI
+-- Target Devices: PYNQ-Z2
+-- Tool Versions: 2021.1
+-- Description: Starts nn_inference IP module and outputs inference results
+-- on  PYNQ-Z2 board LEDs.
 ----------------------------------------------------------------------------------
+
 
 
 library IEEE;
@@ -103,21 +96,6 @@ begin
         "1111" when 15,
         "0000" when others;
         
---    led_ctrl <= "0001" when (pred = 1 and ap_done = '1') else
---                "0010" when (pred = 2 and ap_done = '1') else
---                "0011" when (pred = 3 and ap_done = '1') else
---                "0100" when (pred = 4 and ap_done = '1') else
---                "0101" when (pred = 5 and ap_done = '1') else
---                "0110" when (pred = 6 and ap_done = '1') else
---                "0111" when (pred = 7 and ap_done = '1') else
---                "1000" when (pred = 8 and ap_done = '1') else
---                "1001" when (pred = 9 and ap_done = '1') else
---                "0000" when (pred = 0 and ap_done = '1') else
---                led_ctrl;
-
-   -- led_ctrl <= nn_res_in(27 downto 24);
-
-    --led_ctrl <= nn_res_in(3 downto 0);
 
     ap_start <= start_signal;
 

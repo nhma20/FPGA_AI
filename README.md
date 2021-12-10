@@ -95,7 +95,7 @@ Tested with:
 
 The finished tutorial system is illustrated in the image below:
 
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v6.jpg?raw=true)
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v5.jpg?raw=true)
 
 From the host PC test images are sent to the PYNQ-Z2 board via UART. The baremetal software application acts as an interface between host PC and hardware and send the test image to the hardware inference module through BRAM. The inference result is displayed via the onboard LEDs and sent back through the software application to the host PC.
 

@@ -93,15 +93,16 @@ Tested with:
 2. Run weights_UART.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Pynq board over UART and outputs the corresponding label. Hopefully LED[0:3] lights up in the same binary number as the test image label.
 
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_testing.jpg?raw=true)
+
+![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_test_gif.gif?raw=true)
+
 The finished tutorial system is illustrated in the image below:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v5.jpg?raw=true)
 
 From the host PC test images are sent to the PYNQ-Z2 board via UART. The baremetal software application acts as an interface between host PC and hardware and send the test image to the hardware inference module through BRAM. The inference result is displayed via the onboard LEDs and sent back through the software application to the host PC.
 
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_testing.jpg?raw=true)
-
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_test_gif.gif?raw=true)
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

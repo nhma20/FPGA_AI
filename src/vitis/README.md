@@ -5,3 +5,12 @@
 [helloworld_benchmark.c](/src/vitis/helloworld_benchmark.c)
 
 - Baremetal C application for benchmarking software neural network inference.
+
+[matmul_benchmark.c](/src/vitis/helloworld_benchmark.c)
+
+- Definitions of neural network functions and weights for baremetal software benchmark.
+
+[matmul_benchmark.h](/src/vitis/helloworld_benchmark.c)
+
+- Header with declarations of neural network functions and weights for baremetal software benchmark.
+

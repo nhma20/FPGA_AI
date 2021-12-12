@@ -59,11 +59,11 @@ int main()
     	u32 tUsed;
     	XTime_GetTime (& tCur);
     	int pred = nn_inference(input_img);
-	//usleep (1345);
-	XTime_GetTime (& tEnd);
-	tUsed = ((tEnd-tCur) * 1000000)/(COUNTS_PER_SECOND);
-	xil_printf("Network output: %d\n\r", pred);
-	xil_printf ("time elapsed is %d us\r\n", tUsed);
+		//usleep (1345);
+		XTime_GetTime (& tEnd);
+		tUsed = ((tEnd-tCur) * 1000000)/(COUNTS_PER_SECOND);
+		xil_printf("Network output: %d\n\r", pred);
+		xil_printf ("time elapsed is %d us\r\n", tUsed);
 
     }
 

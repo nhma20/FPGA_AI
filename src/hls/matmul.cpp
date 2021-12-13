@@ -3,9 +3,8 @@
 
 /* Layer 1 matrix multiplication */
 void hwmm_layer1(float input[n_inputs], const float weights[n_inputs][n_layer1], float output[1][n_layer1]) {
-
     col: for (int j = 0; j < n_layer1; ++j) {
-//#pragma HLS UNROLL
+#pragma HLS UNROLL
       float sum = 0;
 
       prod: for (int k = 0; k < n_inputs; ++k){
@@ -23,20 +22,17 @@ void hwmm_layer1(float input[n_inputs], const float weights[n_inputs][n_layer1],
 /* Layer 2 matrix multiplication */
 void hwmm_layer2(float input[1][n_layer1], const float weights[n_layer1][n_layer2], float output[1][n_layer2]) {
 
-  row: for (int i = 0; i < 1; ++i){
-//#pragma HLS UNROLL
-
     col: for (int j = 0; j < n_layer2; ++j) {
 //#pragma HLS UNROLL
       float sum = 0;
 
       prod: for (int k = 0; k < n_layer1; ++k){
 //#pragma HLS UNROLL
-        sum += input[i][k] * weights[k][j];
+        sum += input[0][k] * weights[k][j];
       }
-      output[i][j] = sum;
+      output[0][j] = sum;
     }
-  }
+
 
   return;
 }
@@ -46,20 +42,17 @@ void hwmm_layer2(float input[1][n_layer1], const float weights[n_layer1][n_layer
 /* Layer 3 matrix multiplication */
 void hwmm_layer3(float input[1][n_layer2], const float weights[n_layer2][n_layer3], float output[1][n_layer3]) {
 
-  row: for (int i = 0; i < 1; ++i){
-//#pragma HLS UNROLL
-
     col: for (int j = 0; j < n_layer3; ++j) {
 //#pragma HLS UNROLL
       float sum = 0;
 
       prod: for (int k = 0; k < n_layer2; ++k){
 //#pragma HLS UNROLL
-        sum += input[i][k] * weights[k][j];
+        sum += input[0][k] * weights[k][j];
       }
-      output[i][j] = sum;
+      output[0][j] = sum;
     }
-  }
+
   return;
 }
 

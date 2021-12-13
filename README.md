@@ -32,7 +32,7 @@ Tested with:
 - Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
-## 1) Train network and extract weights with mnist_net.py
+## 1) Train network and extract weights with [mnist_net.py](/src/python/mnist_net.py)
 - Loads dataset, defines, trains and tests simple network, extracts weights.
 - Edit to customize network for performance and/or accuracy (`dims`, `model`, `epochs` etc)
 - Run with : `python3 mnist_net.py -dataset_dir <PATH_TO_DATASET>` e.g. `python3 mnist_net.py -dataset_dir /home/nm/Downloads/MNIST_Dataset_JPG/`
@@ -42,11 +42,11 @@ Tested with:
 
 ## 2) Create HLS project
 1. Open HLS -> Create Project -> Name and Location -> Next
-2. Design files: Add files -> matmul.cpp and matmul.hpp -> Top function -> nn_inference -> Next
-3. TestBench files: Add files -> matmul_tb.cpp -> Next
+2. Design files: Add files -> [``matmul.cpp``](/src/hls/matmul.cpp) and [``matmul.hpp``](/src/hls/matmul.hpp) -> Top function -> nn_inference -> Next
+3. TestBench files: Add files ->[``matmul_tb.cpp``](/src/hls/matmul_tb.cpp) -> Next
 4. Select Configuration: Part -> Boards -> pynq-z2 -> Finish
 5. (edit files to fit any network customization)
-6. Replace template weights with new weights generated from network training script in step 1. All weights (by default layer2_weights, layer2_weights, and layer3_weights arrays) are stored in matmul.hpp file.
+6. Replace template weights with new weights generated from network training script in step 1. All weights (by default layer2_weights, layer2_weights, and layer3_weights arrays) are stored in [``matmul.hpp``](/src/hls/matmul.hpp) file.
 7. Run C Simulation to verify design with testbench file. Output should match labels of input arrays (pixel values of test images) in matmul_tb.cpp.
 8. Run C Synthesis (choose appropriate clock Period (ns) to match what you want in design) to synthesize design into VHDL/Verilog
    - This step outputs the estimated ressource usage, timings, and other relevant information.

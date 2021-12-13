@@ -18,7 +18,7 @@ Benchmarking
     - Create application project with new platform and [helloworld_benchmark.c](/src/vitis/helloworld_benchmark.c), [matmul_benchmark.c](/src/vitis/matmul_benchmark.c), and [matmul_benchmark.h](/src/vitis/matmul_benchmark.h). 
     - Use [software_benchmark.py](/src/python/software_benchmark.py) to read the inference time response.
     - LEDs should be static in this benchmark.
-    - Timing based on difference between two ``XTime_GetTime`` (``xtime_l.h`` livrary) calls.
+    - Timing based on difference between two ``XTime_GetTime`` (``xtime_l.h`` library) calls.
 
 
 

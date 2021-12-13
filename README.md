@@ -21,11 +21,11 @@ Tested with:
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v6.jpg?raw=true)
 
-1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
+1. Customize network parameters in [``mnist_net.py``](/src/python/mnist_net.py). Then run the script to train network and output its weights.
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
 3. Create Vivado project with files from this repository (see steps further down in this readme). Customize modules to fit network and IP as defined in steps above. Then generate bitstream and export hardware (with bitstream).
 4. Create Vitis platform project and application project (see steps further down in this readme). Customize code to fit hardware as defined in the above steps. Build project and deploy on the Pynq-Z2 board.
-5. Use `uart_test_nn.py` to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
+5. Use [`uart_test_nn.py`.py](/src/python/uart_test_nn.py) to randomly choose a test image and send it to the Pynq-Z2 board via UART (see steps further down in this readme). Observe LED[0:3], which displays the network output in binary, and check against the test image label - hopefully they are the same.
 
 
 ## 0) Prepare workspace

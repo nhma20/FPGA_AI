@@ -14,11 +14,13 @@ Benchmarking
     - Use [FPGA_benchmark.py](/src/python/FPGA_benchmark.py) to send random image to FPGA and read the inference time response.
     - LEDs should behave as in ``main`` branch and show inference prediction.
     - Timing based on number of clock cycles between each ``ap_done`` signal of the nn_inference IP module.
+    - 16680 clock cycles (166.8 us @ 100MHz) used for inference. Close to HLS reported 16755 cycles. 
   - Software inference
     - Create application project with new platform and [helloworld_benchmark.c](/src/vitis/helloworld_benchmark.c), [matmul_benchmark.c](/src/vitis/matmul_benchmark.c), and [matmul_benchmark.h](/src/vitis/matmul_benchmark.h). 
     - Use [software_benchmark.py](/src/python/software_benchmark.py) to read the inference time response.
     - LEDs should be static in this benchmark.
     - Timing based on difference between two ``XTime_GetTime`` (``xtime_l.h`` library) calls.
+    - 166 us used on software inference. Curiously close to reported FPGA inference time.
 
 
 

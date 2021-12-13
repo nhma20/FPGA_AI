@@ -1,8 +1,3 @@
-[hls](/src/hls/)
-
-- C++ code to generate simple neural network IP with high-level synthesis.
-
-
 [python](/src/python/)
 
 - Python scripts to train a simple neural network and extract its weights, and communicate with generated neural network inference hardware module.

@@ -64,6 +64,7 @@ int main()
     		input_img[i] = (float)rand()/(float)(RAND_MAX/1);
     	}
 
+	/* from https://0xstubs.org/measuring-time-in-a-bare-metal-zynq-application/ */
     	XTime tEnd, tCur;
     	u32 tUsed;
     	XTime_GetTime (& tCur);

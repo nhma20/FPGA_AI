@@ -5,7 +5,7 @@ Benchmarking
 ----------------------------------------------------------------------------
 
 ## Flow
-1) Follow ``main`` branch to build network with Tensorflow and Vivado IP with HLS (steps (0), (1) and (2) in the flow).
+1) Follow ``main`` branch to build network with Tensorflow and Vivado IP with HLS (steps (0), (1) and (2) in the ``main`` flow).
 2) Use ``benchmark`` branch VHDL files and set up Vivado block diagram as shown below in this readme. Export hardware+bitstream
 3) Use new exported hardware to create platform in Vitis.
 4) Benchmarking

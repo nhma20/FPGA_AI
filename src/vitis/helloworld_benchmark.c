@@ -7,8 +7,8 @@
 #include "xbram.h"
 #include "xparameters.h"
 #include <unistd.h>
-#include "matmul.h"
 #include "xtime_l.h"
+#include "matmul_benchmark.h"
 
 #define BRAM(A)     ((volatile u32*)px_config->MemBaseAddress)[A]
 #define NUM_INPUTS		100 // number of pixel in input image
@@ -29,13 +29,22 @@ int main()
 {
     init_platform();
 
-    print("\n\rInitializing..\n\r");
+    //print("\n\rInitializing..\n\r");
 
-    sleep(1);
+    //sleep(1);
+
+	//ucAXIInit();
 
 	xuartps_init();
 
-	print("\n\rReady for weights transfer\n\r");
+	/*uint8_t BufferPtr_rx[NUM_INPUTS*BYTES_PR_INPUT] = {0x00};
+
+	int Status = 0;
+	//int oldStatus = -1;
+	uint32_t tempInt;
+	float tempFloat = 0.0;*/
+
+	//print("\n\rReady for weights transfer\n\r");
 
 	float input_img[n_inputs] = {0.0, 0.0, 0.0, 0.0, 0.003921569, 0.003921569, 0.015686275, 0.019607844, 0.003921569, 0.0,
 			0.0, 0.0, 0.0, 0.003921569, 0.0, 0.02745098, 0.13725491, 0.015686275, 0.007843138, 0.0,
@@ -59,11 +68,10 @@ int main()
     	u32 tUsed;
     	XTime_GetTime (& tCur);
     	int pred = nn_inference(input_img);
-		//usleep (1345);
-		XTime_GetTime (& tEnd);
-		tUsed = ((tEnd-tCur) * 1000000)/(COUNTS_PER_SECOND);
-		xil_printf("Network output: %d\n\r", pred);
-		xil_printf ("time elapsed is %d us\r\n", tUsed);
+	//usleep (1345);
+	XTime_GetTime (& tEnd);
+	tUsed = ((tEnd-tCur) * 1000000)/(COUNTS_PER_SECOND);
+	xil_printf ("Inference time is %d us\r\n", tUsed);
 
     }
 
@@ -103,4 +111,3 @@ int xuartps_init(){
 	}
 	return XST_SUCCESS;
 }
-

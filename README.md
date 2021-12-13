@@ -154,7 +154,7 @@ The [src](/src/) directory contains the source files of this repository divided 
 - [vitis](/src/vitis/)
    - Baremetal C code application to interface between host PC and generated neural network inference hardware module.
 
-Branches ([4_layer_15x15](https://github.com/nhma20/FPGA_AI/tree/4_layer_15x15), [send_nn_res_uart](https://github.com/nhma20/FPGA_AI/tree/send_nn_res_uart), [sign_mnist](https://github.com/nhma20/FPGA_AI/tree/sign_mnist)) contain slightly different (and somewhat experimental) versions of the project, i.e. a deeper neural network with higher input image resolution, a version that sends the inference result back to the host PC over UART, and a neural network to detect hand gestures.
+Branches ([4_layer_15x15](https://github.com/nhma20/FPGA_AI/tree/4_layer_15x15), [send_nn_res_uart](https://github.com/nhma20/FPGA_AI/tree/send_nn_res_uart), [sign_mnist](https://github.com/nhma20/FPGA_AI/tree/sign_mnist), and [benchmark](https://github.com/nhma20/FPGA_AI/tree/benchmark)) contain slightly different (and somewhat experimental) versions of the project, i.e. a deeper neural network with higher input image resolution, a version that sends the inference result back to the host PC over UART, a neural network to detect hand gestures, and benchmarks of FPGA and software inference.
 
 Created by Nicolaj Malle, PhD fellow at [University of Southern Denmark](https://www.sdu.dk/en) > [UAS Center](https://www.sdu.dk/en/forskning/sduuascenter) > [DIII](https://www.sdu.dk/en/forskning/sduuascenter/researchareas/diii)
 

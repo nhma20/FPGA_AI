@@ -1,15 +1,22 @@
 ----------------------------------------------------------------------------------
--- Company: SDU, UAS, DIII
--- Engineer: Nicolaj Malle
+-- Company: 
+-- Engineer: 
 -- 
 -- Create Date: 10/08/2021 12:17:41 PM
--- Project Name: FPGA_AI
--- Target Devices: PYNQ-Z2
--- Tool Versions: 2021.1
--- Description: Starts nn_inference IP module and outputs inference results
--- on  PYNQ-Z2 board LEDs.
+-- Design Name: 
+-- Module Name: nn_ctrl - Behavioral
+-- Project Name: 
+-- Target Devices: 
+-- Tool Versions: 
+-- Description: 
+-- 
+-- Dependencies: 
+-- 
+-- Revision:
+-- Revision 0.01 - File Created
+-- Additional Comments:
+-- 
 ----------------------------------------------------------------------------------
-
 
 
 library IEEE;
@@ -38,6 +45,14 @@ entity nn_ctrl is
             led_ctrl3: out std_logic;
             led_ctrl4: out std_logic;
             
+            i_BRAM_addr: in std_logic_vector(31 downto 0);
+            i_BRAM_ce  : in std_logic;
+                        
+            o_BRAM_addr: out std_logic_vector(31 downto 0);
+            o_BRAM_ce  : out std_logic;
+            o_BRAM_wr  : out std_logic_vector(3 downto 0);
+            o_BRAM_din : out std_logic_vector(31 downto 0);
+            
             nn_res_in: in  std_logic_vector(31 downto 0)
            
            );
@@ -55,6 +70,14 @@ architecture Behavioral of nn_ctrl is
     
     signal pred         :   integer := 0;
     
+    signal s_BRAM_ce    :   std_logic := '0';
+    signal s_BRAM_addr  :   std_logic_vector(31 downto 0) := (others=>'0');
+    signal s_BRAM_wr    :   std_logic_vector(3 downto 0);
+    signal s_BRAM_din   :   std_logic_vector(31 downto 0);
+    
+    signal time_cnt     :   std_logic_vector(31 downto 0);
+    signal led4         :   std_logic := '0';
+    
 begin
 
     ------------------  Start NN  ------------------
@@ -68,16 +91,49 @@ begin
         end if;
         
         if cnt > 2 then
-            if ap_ready = '1' or ap_idle = '1' then
-                if rstb_busy = '0' then
-                    start_signal <= '1';
-                else 
-                    start_signal <= '0';
+            if ap_done = '0' then
+                if ap_idle = '1' then --ap_ready = '1' or 
+                    if rstb_busy = '0' then
+                        start_signal <= '1';
+                    else 
+                        start_signal <= '0';
+                    end if;
                 end if;
             end if;
         end if;
+        
     END PROCESS;
+    
 
+        ----------------  Time NN  ------------------
+    PROCESS(i_Clk, ap_done)
+      VARIABLE counter : unsigned(31 downto 0) := (others=>'0');
+      VARIABLE one     : unsigned(31 downto 0) := "00000000000000000000000000000001";
+    BEGIN
+        if rising_edge(ap_done) then
+            led4 <= not led4;
+        end if;
+        
+        if rising_edge(i_Clk) then
+            if led4 = '1' then 
+                counter := counter + one;
+            elsif led4 = '0' then
+                if counter /= "00000000000000000000000000000000" then
+                    time_cnt <= std_logic_vector(counter);
+                end if;
+                counter := (others=>'0');
+            else
+                counter := counter;
+            end if;
+        end if;
+    END PROCESS;
+    
+    
+
+    o_BRAM_addr <= (30 => '1', 9 => '1', others => '0') when ap_done = '1' else i_BRAM_addr;
+    o_BRAM_ce   <= '1' when ap_done = '1' else i_BRAM_ce;
+    o_BRAM_wr   <= "1111" when ap_done = '1' else "0000";
+    o_BRAM_din  <= time_cnt;
 
     pred <= to_integer(signed(nn_res_in));
 
@@ -95,7 +151,7 @@ begin
         "1110" when -1,
         "1111" when 15,
         "0000" when others;
-        
+  
 
     ap_start <= start_signal;
 
@@ -107,3 +163,4 @@ begin
     led_ctrl4 <= led_ctrl(3);
     
 end Behavioral;
+

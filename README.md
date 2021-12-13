@@ -64,10 +64,10 @@ Tested with:
 5. Add Axi BRAM Controller and then Run Block Automation
 6. Double click axi_bram_ctrl_0 module and edit Number of BRAM interfaces to 1
 7. Add Nn_inference **without** running block automation
-8. From sources, drag in fix_address, not_gate, and nn_ctrl modules. 
-   - nn_ctrl: Connect all ap_* ports **except** ap_rst to the corresponding port on nn_inference module. Make all 4 led_ctrl* external. Connect nn_res_in to ap_return on nn_inference. Connect rstb_busy to corresponding port on axi_bram_ctrl_0_bram. Connect i_Clk to FCLK_CLK0 on the Zynq7 module.
-   - fix_address: connect addr_in to input_img_address on nn_inference module. If widths do not match, double click on fix_address and edit. Expand BRAM_PORTB on axi_bram_ctrl_0_bram and connect addrb to addr_out on fix_address.
-   - not_gate: Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
+8. From sources, drag in [``fix_address.vhd``](/src/vhdl/fix_address.vhd), [``not_gate.vhd``](/src/vhdl/not_gate.vhd), and [``nn_ctrl.vhd``](/src/vhdl/nn_ctrl.vhd) modules. 
+   - [``nn_ctrl.vhd``](/src/vhdl/nn_ctrl.vhd): Connect all ap_* ports **except** ap_rst to the corresponding port on nn_inference module. Make all 4 led_ctrl* external. Connect nn_res_in to ap_return on nn_inference. Connect rstb_busy to corresponding port on axi_bram_ctrl_0_bram. Connect i_Clk to FCLK_CLK0 on the Zynq7 module.
+   - [``fix_address.vhd``](/src/vhdl/fix_address.vhd): connect addr_in to input_img_address on nn_inference module. If widths do not match, double click on fix_address and edit. Expand BRAM_PORTB on axi_bram_ctrl_0_bram and connect addrb to addr_out on fix_address.
+   - [``not_gate.vhd``](/src/vhdl/not_gate.vhd): Connect i_in to ap_rst on nn_ctrl. Connect o_out to ap_rst on nn_inference module.
    - nn_inference: Connect ap_clk to FCLK_CLK0 on Zynq7 module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram. Connect input_img_c0 to enb on axi_bram_ctrl_0_bram.
    - Connect clkb on axi_bram_ctrl_0_bram to FCLK_CLK0.
    - Right-click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
@@ -83,14 +83,14 @@ Tested with:
 ## 4) Create Vitis project
 1. Open Vitis -> Create platform project -> name -> Next -> Browse to where you saved the exported hardware -> Finish.
 2. File -> New -> Application Project -> Next -> Select your platform project -> name -> Next -> Next -> Select Hello World -> Finish. 
-3. Insert the C code from the helloworld.c file in this repository. Make sure NUM_INPUTS matches the parameters of the network and hardware. 
+3. Insert the C code from the [``helloworld.c``](/src/vitis/helloworld.c) file in this repository. Make sure NUM_INPUTS matches the parameters of the network and hardware. 
 4. Save and right-click application project to build it. 
 5. Right-click application project and Run As -> Launch Hardware to deploy on Pynq-Z2 board. Some of the 4 LED[0:3] should light up. 
 
 
 ## 5) Test FPGA neural network with uart_test_nn.py
 1. Find port number of Pynq-Z2 board (e.g. `ls /dev/` and look for ttyUSB*)
-2. Run weights_UART.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
+2. Run [``uart_test_nn.py``](/src/python/uart_test_nn.py) with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Pynq board over UART and outputs the corresponding label. Hopefully LED[0:3] lights up in the same binary number as the test image label.
 
 ![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_testing.jpg?raw=true)

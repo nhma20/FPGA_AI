@@ -19,7 +19,7 @@ Tested with:
 
 ## Flow
 
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v6.jpg?raw=true)
+![resized_flow](https://user-images.githubusercontent.com/76950970/146179783-3b64ed5c-4bb9-4999-bc2b-98c969453e94.jpg)
 
 1. Customize network parameters in [``mnist_net.py``](/src/python/mnist_net.py). Then run the script to train network and output its weights.
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
@@ -40,7 +40,7 @@ Tested with:
 - Should generate several .txt files containing the weights of the network.
 - The (default) implemented network is the following:
 
-![mlp_V2](https://user-images.githubusercontent.com/76950970/146178722-20a35499-0d0d-48c0-90b2-6bb8b470007f.jpg)
+![resized_mlp](https://user-images.githubusercontent.com/76950970/146179883-3de4397b-9340-457f-b1ee-ed2aa79ae95a.jpg)
 
 
 ## 2) Create HLS project
@@ -102,7 +102,8 @@ Tested with:
 
 The finished tutorial system is illustrated in the image below:
 
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/edufpgaai_diagram_v5.jpg?raw=true)
+![resized_dataflow](https://user-images.githubusercontent.com/76950970/146179997-24fad85e-28ad-4af2-b536-55ff3de57cde.jpg)
+
 
 From the host PC test images are sent to the PYNQ-Z2 board via UART. The baremetal software application acts as an interface between host PC and hardware and send the test image to the hardware inference module through BRAM. The inference result is displayed via the onboard LEDs and sent back through the software application to the host PC.
 

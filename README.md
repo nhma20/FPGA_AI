@@ -38,6 +38,9 @@ Tested with:
 - Run with : `python3 mnist_net.py -dataset_dir <PATH_TO_DATASET>` e.g. `python3 mnist_net.py -dataset_dir /home/nm/Downloads/MNIST_Dataset_JPG/`
 - Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
 - Should generate several .txt files containing the weights of the network.
+- The (default) implemented network is the following:
+- 
+![mlp_V2](https://user-images.githubusercontent.com/76950970/146178722-20a35499-0d0d-48c0-90b2-6bb8b470007f.jpg | width=100)
 
 
 ## 2) Create HLS project

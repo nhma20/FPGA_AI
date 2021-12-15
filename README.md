@@ -40,7 +40,7 @@ Tested with:
 - Should generate several .txt files containing the weights of the network.
 - The (default) implemented network is the following:
 - 
-![mlp_V2](https://user-images.githubusercontent.com/76950970/146178722-20a35499-0d0d-48c0-90b2-6bb8b470007f.jpg =250x)
+![mlp_V2](https://user-images.githubusercontent.com/76950970/146178722-20a35499-0d0d-48c0-90b2-6bb8b470007f.jpg)
 
 
 ## 2) Create HLS project

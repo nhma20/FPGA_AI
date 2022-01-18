@@ -11,5 +11,5 @@ By simply switching out all ```float``` occurences with ```ap_fixed<32,24>``` in
 Below is the HLS Synthesis Summary when using ```float```:
 ![hls_float_nn](https://user-images.githubusercontent.com/76950970/148224660-2dd4cddc-b9dc-445d-ba16-48690c73f3da.png)
 
-And here is the HLS Synthesis Summary when using ```ap_fixed<32,24>```:
-![hls_ap_fixed_nn png](https://user-images.githubusercontent.com/76950970/148224677-eafeb439-b870-4086-9d06-3dcfeeeea0ac.png)
+And here is the HLS Synthesis Summary when using ```ap_fixed<32,24>``` (including conversion from ```float``` to ```ap_fixed<32,24>```):
+![hls_float_to_ap_fixed](https://user-images.githubusercontent.com/76950970/149906717-48f27b19-626f-4240-95ad-ef5342ee45d3.png)

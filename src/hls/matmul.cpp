@@ -1,6 +1,13 @@
 #include "matmul.hpp"
 
 
+void float_to_fixed(float input[n_inputs], ap_fixed<32,24> output[n_inputs]) {
+	for(int i = 0; i < n_inputs; i++){
+		output[i] = input[i];
+	}
+}
+
+
 /* Layer 1 matrix multiplication */
 void hwmm_layer1(ap_fixed<32,24> input[n_inputs], const ap_fixed<32,24> weights[n_inputs][n_layer1], ap_fixed<32,24> output[1][n_layer1]) {
 
@@ -106,18 +113,21 @@ void hw_act_layer3(ap_fixed<32,24> input[1][n_layer3], ap_fixed<32,24> &pred){
 
 
 /* Connect NN Layers */
-ap_fixed<32,24> nn_inference(ap_fixed<32,24> input_img[n_inputs]){
+ap_fixed<32,24> nn_inference(float input_img[n_inputs]){
 //#pragma HLS INTERFACE mode=s_axilite port=return
 //#pragma HLS INTERFACE mode=m_axi port=input_img
 
 //#pragma HLS ARRAY_PARTITION dim=1 type=complete variable=input_img
+
+	ap_fixed<32,24> fp_input_img[n_inputs] = {1.0};
+	float_to_fixed(input_img, fp_input_img);
 
 	ap_fixed<32,24> temp_output[1][n_layer1] = {1};
 	ap_fixed<32,24> temp_output2[1][n_layer2] = {1};
 	ap_fixed<32,24> temp_output3[1][n_layer3] = {1};
 	ap_fixed<32,24> prediction = -1;
 
-	hwmm_layer1(input_img, weights::layer1_weights, temp_output);
+	hwmm_layer1(fp_input_img, weights::layer1_weights, temp_output);
 	hw_act_layer1(temp_output, temp_output);
 	hwmm_layer2(temp_output, weights::layer2_weights, temp_output2);
 	hw_act_layer2(temp_output2, temp_output2);

@@ -75,8 +75,8 @@ int main()
 		}
 
 		sleep(0.1);
-		xil_printf("Network output: %u\n\r", BRAM(128));
-		//xil_printf("Inference time: %u\n\r", BRAM(128));
+		//xil_printf("Network output: %u\n\r", BRAM(128));
+		xil_printf("Inference time: %u\n\r", BRAM(128));
     }
 
     print("Shutting down");

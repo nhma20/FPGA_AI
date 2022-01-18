@@ -11,7 +11,7 @@ Benchmarking
 4) Benchmarking
   - FPGA inference
     - Create application project with new platform and [helloworld_FPGA_benchmark.c](/src/vitis/helloworld_FPGA_benchmark.c).
-    - Use [FPGA_benchmark.py](/src/python/FPGA_benchmark.py) to send random image to FPGA and read the inference time response.
+    - Use [FPGA_benchmark.py](/src/python/benchmark_FPGA.py) to send random image to FPGA and read the inference time response.
     - LEDs should behave as in ``main`` branch and show inference prediction.
     - Timing based on number of clock cycles between each ``ap_done`` signal of the nn_inference IP module.
     - 16680 clock cycles (166.8 us @ 100MHz) used for inference. Close to HLS reported 16755 cycles. 

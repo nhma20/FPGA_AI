@@ -7,13 +7,15 @@
 #define n_layer2 16
 #define n_layer3 10
 
+void float_to_fixed(float input[n_inputs], ap_fixed<32,24> output[n_inputs]);
+
 void hwmm_layer1(ap_fixed<32,24> input[n_inputs], const ap_fixed<32,24> weights[n_inputs][n_layer1], ap_fixed<32,24> output[1][n_layer1]);
 void hw_act_layer1(ap_fixed<32,24> input[1][n_layer1], ap_fixed<32,24> output[1][n_layer1]);
 void hwmm_layer2(ap_fixed<32,24> input[1][n_layer1], const ap_fixed<32,24> weights[n_layer1][n_layer2], ap_fixed<32,24> output[1][n_layer2]);
 void hw_act_layer2(ap_fixed<32,24> input[1][n_layer2], ap_fixed<32,24> output[1][n_layer2]);
 void hwmm_layer3(ap_fixed<32,24> input[1][n_layer2], const ap_fixed<32,24> weights[n_layer2][n_layer3], ap_fixed<32,24> output[1][n_layer3]);
 void hw_act_layer3(ap_fixed<32,24> input[1][n_layer3], ap_fixed<32,24> &pred);
-ap_fixed<32,24> nn_inference(ap_fixed<32,24> input_img[n_inputs]);
+ap_fixed<32,24> nn_inference(float input_img[n_inputs]);
 
 namespace weights{
 

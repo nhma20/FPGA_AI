@@ -76,7 +76,7 @@ Tested with:
 3. Insert the C code from the helloworld.c file in this repository. Make sure NUM_INPUTS matches the parameters of the network and hardware. 
 4. Edit BSP settings to use UART1 instead of UART0: Under the platform project, open platform.spr, click on "psu_cortexa53_0">"zynqmp_fsbl">"Bord Support Package" and click "Modify BSP Settings" -> Under "standalone" change "psu_uart0" to "psu_uart1". Repeat for "psu_cortexa53_0">"standalone on psu_cortexa53_0">"Bord Support Package" and "psu_pmu_0">"zynqmp_pmufw">"Bord Support Package".
 5. Save and right-click application project to build it. 
-6. Right-click application project and Run As -> Launch Hardware to deploy on Ultra92-V2 board. While flashing, a blue LED should light up. To check if everything flashes successfully, find port of board and ```sh screen /dev/ttyUSB1 115200``` and then flash again. Some text should appear during flashing.
+6. Right-click application project and Run As -> Launch Hardware to deploy on Ultra92-V2 board. While flashing, a blue LED should light up. To check if everything flashes successfully, find port of board and ```screen /dev/ttyUSB1 115200``` and then flash again. Some text should appear during flashing.
 
 
 ## 5) Test FPGA neural network with uart_test_nn.py

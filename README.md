@@ -164,4 +164,5 @@ Created by Nicolaj Malle, PhD fellow at [University of Southern Denmark](https:/
 
 Contact: <nhma@mmmi.sdu.dk>
 
-If you use this work, please cite TBD.
+If you use this work, please cite:
+N. Malle and E. Ebeid, "Open-Source Educational Platform for FPGA Accelerated AI in Robotics," 2022 8th International Conference on Mechatronics and Robotics Engineering (ICMRE), 2022, pp. 112-115, doi: 10.1109/ICMRE54455.2022.9734102.

@@ -57,9 +57,9 @@ Tested with:
 
 
 ## 3) Create Vivado project
-1. Open Vivado -> Next -> Name and location, tick create subdirectory -> Next -> RTL Project, untick Do not specify sources -> Next -> Add Directories -> .../FPGA_AI/src/vhdl/ -> Next -> Next -> Under Boards choose pynq-z2 -> Next -> Finish
+1. Open Vivado -> Create Project -> Next -> Name and location, tick create subdirectory -> Next -> RTL Project, untick Do not specify sources -> Next -> Add Directories -> .../FPGA_AI/src/vhdl/ -> Next -> Next -> Under Boards choose pynq-z2 -> Next -> Finish
 2. Let Vivado find custom IPs
-   - Tools -> IP -> Repository
+   - Tools -> Settings -> IP -> Repository
    - Add folder with new IP (likely HLS project folder)
    - Can now add nn_inference to block design with 'Add IP' (Ctrl+i)
 3. Create Block Design and add ZYNQ7 Processing System and then Run Block Automation

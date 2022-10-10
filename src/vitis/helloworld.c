@@ -14,8 +14,8 @@
 
 XBram             	x_bram;
 XBram_Config    	*px_config;
-XUartPs_Config 		*Config_0;
-XUartPs 			Uart_PS_0;
+XUartPs_Config 		*Config_1;
+XUartPs 			Uart_PS_1; // UART 1 for Ultra96-V2
 
 uint8_t 		ucAXIInit();
 int				xuartps_init();
@@ -26,9 +26,7 @@ int main()
 {
     init_platform();
 
-    print("\n\rInitializing..\n\r");
-
-    sleep(1);
+    xil_printf("\n\rInitializing..\n\r");
 
 	ucAXIInit();
 
@@ -37,45 +35,46 @@ int main()
 	uint8_t BufferPtr_rx[NUM_INPUTS*BYTES_PR_INPUT] = {0x00};
 
 	int Status = 0;
-	//int oldStatus = -1;
 	uint32_t tempInt;
 	float tempFloat = 0.0;
 
-	print("\n\rReady for weights transfer\n\r");
+	xil_printf("\n\rReady for data transfer\n\r");
 
     while(1)
     {
 		Status = 0;
 
 		while (Status < NUM_INPUTS*BYTES_PR_INPUT) {
-			BufferPtr_rx[Status] = XUartPs_RecvByte(XPAR_XUARTPS_0_BASEADDR); // read UART
+
+//			if(Status == 1){
+//				xil_printf("Started receiving data");
+//			}
+
+			BufferPtr_rx[Status] = XUartPs_RecvByte(XPAR_XUARTPS_1_BASEADDR); // read UART
 			Status ++;
-			/*if(oldStatus != Status){ // print received value after read
-				print("Index ");
-				xil_printf("%u", Status-1);
-				xil_printf(" received: %u", BufferPtr_rx[Status-1]);
-				print("\n\r");
-				oldStatus = Status;
-			}*/
+//			xil_printf("Status: %d\n\r", Status);
+//			xil_printf("Newest Data: %d\n\r", BufferPtr_rx[Status-1]);
 		}
 
+//		xil_printf("Finished receiving data");
 
 		for(int i = 0; i < NUM_INPUTS; i++){
+
 			// concatenate 8-but input messages into 32-bit values
 			tempInt = ((BufferPtr_rx[i*4+3]<<24) | (BufferPtr_rx[i*4+2]<<16) | (BufferPtr_rx[i*4+1]<<8) | BufferPtr_rx[i*4]);
 			// prints current values in BRAM
 			tempFloat = *((float *)&tempInt); 	// int bits to float
 			char buffer2[10];
 			sprintf(buffer2, "%f", tempFloat);//tempInt);
-			xil_printf("BRAM[%d]:", i);
-			xil_printf(buffer2);
-			print("\n\r");
+//			xil_printf("BRAM[%d]:", i);
+//			xil_printf(buffer2);
 
 			BRAM(i) = tempInt; // write to BRAM
 		}
 
 		sleep(0.1);
 		xil_printf("Network output: %u\n\r", BRAM(128));
+
     }
 
     print("Shutting down");
@@ -87,15 +86,19 @@ uint8_t 	ucAXIInit(){
 	/*************************
 	*  BRAM initialization   *
 	*************************/
+	xil_printf("\n\rBRAM init...\n");
 	px_config = XBram_LookupConfig(XPAR_BRAM_0_DEVICE_ID);
 	if (px_config == (XBram_Config *) NULL) {
+		xil_printf("\n\rBRAM init failed\n");
 		return XST_FAILURE;
 	}
 	int x_status 	= 	XBram_CfgInitialize(&x_bram, px_config,
 			px_config->CtrlBaseAddress);
 	if (x_status != XST_SUCCESS) {
+		xil_printf("\n\rBRAM init failed\n");
 		return XST_FAILURE;
 	}
+	xil_printf("\n\rBRAM init success\n");
 	return XST_SUCCESS;
 }
 
@@ -104,13 +107,17 @@ int xuartps_init(){
 	/*************************
 	 * UART 0 initialization *
 	 *************************/
-	Config_0 = XUartPs_LookupConfig(XPAR_XUARTPS_0_DEVICE_ID);
-	if (NULL == Config_0) {
+	xil_printf("\n\rUART 1 init...\n");
+	Config_1 = XUartPs_LookupConfig(XPAR_XUARTPS_1_DEVICE_ID);
+	if (NULL == Config_1) {
+		xil_printf("\n\rUART 1 init failed\n");
 		return XST_FAILURE;
 	}
-	int uart_x_status = XUartPs_CfgInitialize(&Uart_PS_0, Config_0, Config_0->BaseAddress);
+	int uart_x_status = XUartPs_CfgInitialize(&Uart_PS_1, Config_1, Config_1->BaseAddress);
 	if (uart_x_status != XST_SUCCESS) {
+		xil_printf("\n\rUART 1 init failed\n");
 		return XST_FAILURE;
 	}
+	xil_printf("\n\rUART 1 init success\n");
 	return XST_SUCCESS;
 }

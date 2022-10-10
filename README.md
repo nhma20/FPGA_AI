@@ -1,7 +1,7 @@
 # FPGA_AI
 Introduction to AI on FPGAs
 
-- Clone repository: `git clone https://github.com/nhma20/FPGA_AI.git`
+- Clone `ultra96-v2` branch of repository: `git clone --branch ultra96-v2 https://github.com/nhma20/FPGA_AI.git`
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 ### Prerequisites
@@ -10,7 +10,6 @@ Ultra96-V2 board, PC, USB-A to micro USB cable.
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`
 - `Vivado / Vitis / Vitis HLS 2021.1` (with cable drivers and board files installed)
-   - Place board_files folder in .../Xilinx/Vivado/2021.1/data/boards/ directory to install pynq-z2 board files.
 - `Tensorflow 2.6.0`
 - `OpenCV 4.2.0`
 - `Python 3.8.10`

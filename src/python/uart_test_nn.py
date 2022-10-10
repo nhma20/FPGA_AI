@@ -27,12 +27,14 @@ def main():
 	for i in range(dims[1]):
 		for j in range(dims[0]):
 			values = bytearray(struct.pack("f", img[i][j])) # turn pixel values into bytearray
+			#print(values)
+			#time.sleep(0.01)
 			ser.write(values) # send bytearray over UART
 
 	nn_res = ""
 	while "output" not in nn_res: # check if nn output received
 		nn_res = ser.readline().decode('UTF-8') # decode received bytes
-		
+		#print(nn_res) # can be used to display prints from U96
 	print(nn_res)
 	
 	

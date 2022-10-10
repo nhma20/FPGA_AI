@@ -42,6 +42,9 @@ Tested with:
    - This step outputs the estimated ressource usage, timings, and other relevant information.
 8. Export RTL to obtain IP that can be imported to Vivado. IP will by default be located in HLS project folder.
 
+Below image shows the expected resource utilization and timings as estimated by HLS:
+![u96_ai_timing_and_resources](https://user-images.githubusercontent.com/76950970/194881378-706d83f3-c932-4a47-ad25-ee805f2aaac2.png)
+
 
 ## 3) Create Vivado project
 1. Open Vivado -> Next -> Name and location, tick create subdirectory -> Next -> RTL Project, untick Do not specify sources -> Next -> Add Directories -> .../FPGA_AI/src/vhdl/ -> Next -> Next -> Under Boards choose Ultra96-V2 -> Next -> Finish
@@ -69,6 +72,16 @@ Tested with:
 12. Go to the block diagram, save, validate design, and then Generate Bitstream (may also take a while).
 13. Finally, go to File -> Export Hardware -> Next -> Include bitstream -> Next -> Location -> Next -> Finish
 
+Below image shows the finished block diagram in Vivado:
+![vivado_diagram_u96](https://user-images.githubusercontent.com/76950970/194881568-65717829-969a-46c6-8ed2-e80114f63712.png)
+
+<img src="https://user-images.githubusercontent.com/76950970/194881568-65717829-969a-46c6-8ed2-e80114f63712.png" width="350">
+
+And this is the actual resource utilization as reported by Vivado:
+![vivado_utilization](https://user-images.githubusercontent.com/76950970/194882543-40cff797-90fa-42c1-98b8-a6b86c0c6c54.png)
+
+<img src="https://user-images.githubusercontent.com/76950970/194882543-40cff797-90fa-42c1-98b8-a6b86c0c6c54.png" width="350">
+
 
 ## 4) Create Vitis project
 1. Open Vitis -> Create platform project -> name -> Next -> Browse to where you saved the exported hardware -> Finish.
@@ -84,9 +97,9 @@ Tested with:
 2. Run uart_test_nn.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Ultra96-V2 board over UART and outputs the corresponding label. Hopefully it outputs the same number as the test image label.
 
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/send_nn_res_uart/pictures/nn_testing_v2.jpg?raw=true)
-
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/nn_test_gif.gif?raw=true)
+![nn_uart_test_u96](https://user-images.githubusercontent.com/76950970/194883215-4ec03353-0f0c-4b42-9b97-501bac5497d6.png)
+Expected output:
+<img src="https://user-images.githubusercontent.com/76950970/194883215-4ec03353-0f0c-4b42-9b97-501bac5497d6.png" width="350">
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

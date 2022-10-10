@@ -5,7 +5,7 @@ Introduction to AI on FPGAs
 - Download and unpack the dataset: https://nextcloud.sdu.dk/index.php/s/wZg4FLSxgiigJTL
 
 ### Prerequisites
-Ultra96-V2 board, PC, USB-A to micro USB cable.
+Ultra96-V2 board, power supply and JTAG programmer, PC, USB-A to micro USB cable.
 
 Tested with:
 - `Ubuntu 20.04.2 LTS (host PC)`

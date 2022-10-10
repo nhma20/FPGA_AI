@@ -44,7 +44,7 @@ Tested with:
 
 Below image shows the expected resource utilization and timings as estimated by HLS:
 
-<img src="https://user-images.githubusercontent.com/76950970/194881378-706d83f3-c932-4a47-ad25-ee805f2aaac2.png" width="650">
+<img src="https://user-images.githubusercontent.com/76950970/194881378-706d83f3-c932-4a47-ad25-ee805f2aaac2.png" width="750">
 
 
 ## 3) Create Vivado project
@@ -65,7 +65,7 @@ Below image shows the expected resource utilization and timings as estimated by 
    - nn_inference: Connect ap_clk to ps_clk0 on Zynq module. Connect input_img_q0 to doutb on axi_bram_ctrl_0_bram.
    - Connect clkb on axi_bram_ctrl_0_bram to ps_clk0.
    - Right-click anywhere in the block diagram and regenerate layout and it should look similar to the below image:
-<img src="https://user-images.githubusercontent.com/76950970/194881568-65717829-969a-46c6-8ed2-e80114f63712.png" width="650">
+![vivado_diagram_u96](https://user-images.githubusercontent.com/76950970/194881568-65717829-969a-46c6-8ed2-e80114f63712.png)
 
 9. In sources, right click on design_1.bd (in orange) and click create wrapper and let Vivado manage it.
 10. Run Synthesis (may take a while) and open Synthesized Design. In the top right corner select I/O Planning. At the bottom, select the I/O Ports window and expand Scalar ports (4).
@@ -73,12 +73,7 @@ Below image shows the expected resource utilization and timings as estimated by 
 12. Go to the block diagram, save, validate design, and then Generate Bitstream (may also take a while).
 13. Finally, go to File -> Export Hardware -> Next -> Include bitstream -> Next -> Location -> Next -> Finish
 
-Below image shows the finished block diagram in Vivado:
-![vivado_diagram_u96](https://user-images.githubusercontent.com/76950970/194881568-65717829-969a-46c6-8ed2-e80114f63712.png)
-
-
-And this is the actual resource utilization as reported by Vivado:
-![vivado_utilization](https://user-images.githubusercontent.com/76950970/194882543-40cff797-90fa-42c1-98b8-a6b86c0c6c54.png)
+Below is the actual resource utilization as reported by Vivado:
 
 <img src="https://user-images.githubusercontent.com/76950970/194882543-40cff797-90fa-42c1-98b8-a6b86c0c6c54.png" width="550">
 
@@ -97,9 +92,10 @@ And this is the actual resource utilization as reported by Vivado:
 2. Run uart_test_nn.py with port as argument, e.g.: `python3 uart_test_nn.py -port /dev/ttyUSB1`
 3. The script sends a random test image from the dataset to the Ultra96-V2 board over UART and outputs the corresponding label. Hopefully it outputs the same number as the test image label.
 
-![nn_uart_test_u96](https://user-images.githubusercontent.com/76950970/194883215-4ec03353-0f0c-4b42-9b97-501bac5497d6.png)
 Expected output:
-<img src="https://user-images.githubusercontent.com/76950970/194883215-4ec03353-0f0c-4b42-9b97-501bac5497d6.png" width="550">
+![nn_uart_test_u96](https://user-images.githubusercontent.com/76950970/194883215-4ec03353-0f0c-4b42-9b97-501bac5497d6.png)
+
+
 
 ## Speed up HLS implementation
 - Unroll loops with: `#pragma HLS UNROLL`. Append factor=X if HLS should not unroll fully but with factor X.

@@ -1,4 +1,4 @@
-# Ultra96-V2 FPGA simle neural network inference
+# Ultra96-V2 Simple Neural Network FPGA Inference
 Introduction to AI on FPGAs
 
 - Clone `ultra96-v2` branch of repository: `git clone --branch ultra96-v2 https://github.com/nhma20/FPGA_AI.git`

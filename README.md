@@ -14,6 +14,9 @@ Tested with:
 - `OpenCV 4.2.0`
 - `Python 3.8.10`
 
+![u96_flow](https://user-images.githubusercontent.com/76950970/202475201-8fd8bcf3-b685-45e6-b446-df71c0078535.jpg)
+
+
 ## Flow
 1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
@@ -28,6 +31,10 @@ Tested with:
 - Run with : `python3 mnist_net.py -dataset_dir <PATH_TO_DATASET>` e.g. `python3 mnist_net.py -dataset_dir /home/nm/Downloads/MNIST_Dataset_JPG/`
 - Prints information regarding the network such as training progress, an overview of the network structure, test accuracy, and a random test inference result at the end.
 - Should generate several .txt files containing the weights of the network.
+
+The (default) implemented network is the following:
+
+![mlp_V2](https://user-images.githubusercontent.com/76950970/202475687-0a7e29b9-3159-4fe3-ac73-26d944a0a0d9.jpg)
 
 
 ## 2) Create HLS project
@@ -114,10 +121,6 @@ Expected output:
 - Xilinx HLS User Guide (v2021.1)
    - https://www.xilinx.com/support/documentation/sw_manuals/xilinx2021_1/ug1399-vitis-hls.pdf
 
-
-## Pynq-Z2 available resources:
-
-![Alt text](https://github.com/nhma20/FPGA_AI/blob/main/pictures/xc7z020.png?raw=true)
 
 
 ## Proposed exercises

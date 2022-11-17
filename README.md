@@ -16,6 +16,7 @@ Tested with:
 
 ![u96_flow](https://user-images.githubusercontent.com/76950970/202475201-8fd8bcf3-b685-45e6-b446-df71c0078535.jpg)
 
+<img src="https://user-images.githubusercontent.com/76950970/202475201-8fd8bcf3-b685-45e6-b446-df71c0078535.jpg" width="750">
 
 ## Flow
 1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
@@ -35,6 +36,8 @@ Tested with:
 The (default) implemented network is the following:
 
 ![mlp_V2](https://user-images.githubusercontent.com/76950970/202475687-0a7e29b9-3159-4fe3-ac73-26d944a0a0d9.jpg)
+
+<img src="https://user-images.githubusercontent.com/76950970/202475687-0a7e29b9-3159-4fe3-ac73-26d944a0a0d9.jpg" width="750">
 
 
 ## 2) Create HLS project

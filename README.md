@@ -98,6 +98,17 @@ Below is the actual resource utilization as reported by Vivado:
 5. Save and right-click application project to build it. 
 6. Right-click application project and Run As -> Launch Hardware to deploy on Ultra92-V2 board. While flashing, a blue LED should light up. To check if everything flashes successfully, find port of board and ```screen /dev/ttyUSB1 115200``` and then flash again. Some text should appear during flashing.
 
+You have now set up the following system:
+
+<img src="https://user-images.githubusercontent.com/76950970/202704099-b04854ce-e5fa-4e44-bb0b-d3f98b779884.jpg" width="550">
+
+- From the host PC, you can now send an image to the CPU of the Ultra96-V2 via a serial connection.
+- The CPU will then load the data into BRAM.
+- On the FPGA, the neural network inference IPs will grab the data from BRAM, perform inference, and load the result back into BRAM.
+- The Ultra96-V2 CPU will read the result from BRAM and send it back to the host PC over the serial connection.
+
+Time to test if it actually works.
+
 
 ## 5) Test FPGA neural network with uart_test_nn.py
 1. Find port number of Ultra96-V2 board (e.g. `ls /dev/` and look for ttyUSB*)

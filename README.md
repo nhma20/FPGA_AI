@@ -14,9 +14,16 @@ Tested with:
 - `OpenCV 4.2.0`
 - `Python 3.8.10`
 
-<img src="https://user-images.githubusercontent.com/76950970/202475201-8fd8bcf3-b685-45e6-b446-df71c0078535.jpg" width="650">
+Connect the JTAG programmer to the Ultra96-V2 and make sure the `SW3` switches on the Ultra96-V2 are set up as follows:
+
+<img src="https://user-images.githubusercontent.com/76950970/202680502-c8d98da5-8719-422e-996f-d752148d4b55.jpg" width="400">
+
+
 
 ## Flow
+
+<img src="https://user-images.githubusercontent.com/76950970/202475201-8fd8bcf3-b685-45e6-b446-df71c0078535.jpg" width="650">
+
 1. Customize network parameters in `mnist_net.py`. Then run the script to train network and output its weights.
 2. Create HLS project with template C++ files from this repository (see steps further down in this readme). Customize parameters to fit network as defined in step 1 above. Then export RTL to obtain IP core.
 3. Create Vivado project with files from this repository (see steps further down in this readme). Customize modules to fit network and IP as defined in steps above. Then generate bitstream and export hardware (with bitstream).

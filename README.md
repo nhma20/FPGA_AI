@@ -145,6 +145,7 @@ Expected output:
 - Add or change existing layers in the network to increase resource utilization and accuracy.
 - Solve different computer vision problem. Get dataset, re-train network, FPGA rebuild application.
 - Evaluate the network inference time in hardware and send it to host PC via UART. Have a look at the HLS ap_ctrl_hs interface image above for inspiration on which signals from the nn_inference module might be interesting.
+- Implement convolutional layers for increased efficiency and accuracy.
 - Quantize network to reduce inference time - change input data type to 16 or 8-bit datatype instead of 32-bit float. The following links may be helpful:
    - [Tensorflow guide on quantization after training](https://www.tensorflow.org/model_optimization/guide/quantization/post_training)
    - [Tensorflow guide on quantization before training](https://www.tensorflow.org/model_optimization/guide/quantization/training)
